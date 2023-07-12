@@ -3,6 +3,7 @@ import "../css/IndexPage.css";
 import Logo from "../components/Logo";
 import CHAT_GIF from "../assets/chat-gif.gif";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 function IndexPage() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function IndexPage() {
 
   return (
     <div className="index__page">
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Logo />
       <div className="index__contents">
         <div className="index__banner__text">
