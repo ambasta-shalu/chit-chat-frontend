@@ -1,0 +1,87 @@
+.index__contents {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  gap: 5rem;
+  margin: 5rem 2rem 0rem;
+}
+
+.index__banner__text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.index__banner__text > h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+}
+
+.index__banner__text > h3 {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--COLOR_BLACK);
+}
+
+.index__btns {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.index__btns > button {
+  padding: 0.75rem 1rem;
+  margin: 2rem 0rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+  letter-spacing: 2px;
+}
+
+.btn__new__chat {
+  background-color: var(--COLOR_DARK);
+  color: var(--COLOR_LIGHT);
+}
+
+.btn__new__chat:hover {
+  background-color: var(--GREY);
+  color: var(--COLOR_BLACK);
+}
+
+.btn__old__chat {
+  background-color: var(--COLOR_LIGHT);
+  color: var(--COLOR_DARK);
+}
+
+.btn__old__chat:hover {
+  background-color: var(--GREY);
+  color: var(--COLOR_BLACK);
+}
+
+.index__banner__img > img {
+  width: 60%;
+  animation: bounce 2s infinite ease-in-out;
+  vertical-align: middle;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

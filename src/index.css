@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+img::selection {
+  background-color: transparent;
+  color: transparent;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+}
