@@ -43,15 +43,19 @@
   color: var(--COLOR_BLACK);
   background-color: rgba(230, 235, 228, 0.3);
   border-radius: 0.2rem;
-  border: none;
   outline: none;
   padding: 0.5rem 1rem;
   width: 20rem;
   text-align: left;
+  border-color: var(--COLOR_LIGHT);
+  border-width: 1px;
+  border-style: solid;
 }
 
 .input__error {
   color: var(--ERROR_COLOR);
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .create__room__btn {
