@@ -1,0 +1,52 @@
+.room__detail {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.room__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+
+.room__icon {
+  font-size: 1.8rem;
+}
+
+.room__header > h1 {
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.room__code {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.room__code > p {
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.room__code > p:hover {
+  text-decoration: underline;
+}
+
+.copy__icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+}

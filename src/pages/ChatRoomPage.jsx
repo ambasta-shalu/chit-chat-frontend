@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../css/ChatRoomPage.css";
 import ChatTopBar from "../components/ChatTopBar";
+import RoomDetail from "../components/RoomDetail";
+import UserDetail from "../components/UserDetail";
+import MessageItem from "../components/MessageItem";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { socket } from "../socket/ConnectSocket";
@@ -61,7 +64,20 @@ function ChatRoomPage() {
     <div className="chatroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <ChatTopBar />
-      <div className="chatroom__contents">chatroom contents</div>
+      <div className="chatroom__contents">
+        <div className="chatroom__menu">
+          <RoomDetail ROOM_CODE={ROOM_CODE} />
+          <UserDetail />
+        </div>
+        <div className="chatroom__box">
+          <div className="chatroom__box__top">
+            <MessageItem />
+            <MessageItem />
+            <MessageItem />
+          </div>
+          <div className="chatroom__box__bottom">chat room box bottom</div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -11,7 +11,7 @@ function ChatTopBar() {
         </div>
         <h1 className="nowrap chat__logo__title">CHIT CHAT</h1>
       </div>
-      <button className="chat__leave__btn">Leave Room</button>
+      <button className="nowrap chat__leave__btn">Leave Room</button>
     </div>
   );
 }

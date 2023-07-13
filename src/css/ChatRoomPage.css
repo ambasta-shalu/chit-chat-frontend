@@ -1,0 +1,17 @@
+.chatroom__contents {
+  height: calc(100vh - 5.3rem);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.chatroom__menu {
+  flex: 1;
+  height: 100%;
+  background-color: var(--COLOR_LIGHT);
+}
+
+.chatroom__box {
+  flex: 3;
+  height: 100%;
+}
