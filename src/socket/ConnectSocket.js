@@ -1,4 +1,4 @@
 import { io } from "socket.io-client";
-import { SOCKET_URL } from "../utils/Constants";
+import { SERVER_DOMAIN } from "../utils/Constants";
 
-export const socket = io(SOCKET_URL);
+export const socket = io(SERVER_DOMAIN);

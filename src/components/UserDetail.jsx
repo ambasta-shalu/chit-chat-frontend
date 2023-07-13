@@ -11,6 +11,7 @@ function UserDetail() {
       </div>
       <div className="user__names">
         <p>Lorem Ipsum</p>
+        <p>Ipsum Lorem</p>
       </div>
     </div>
   );
