@@ -11,6 +11,8 @@ import {
   onConnectEvent,
   onDisconnectEvent,
   onJoinRoomEvent,
+  onSendMessageEvent,
+  onReceiveMessageEvent,
 } from "../socket/SocketEvents";
 
 function ChatRoomPage() {
@@ -38,13 +40,18 @@ function ChatRoomPage() {
       "joinRoomEvent",
       onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, ROOM_CODE)
     );
-
+    socket.on("receiveMessageEvent", () =>
+      onReceiveMessageEvent(data, setMessageList)
+    );
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
       // Clean up event listeners when the component unmounts
 
       socket.off("connect", () => onConnectEvent(socket, setIsConnected));
+      socket.off("receiveMessageEvent", () =>
+        onReceiveMessageEvent(data, setMessageList)
+      );
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
@@ -58,6 +65,22 @@ function ChatRoomPage() {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     const time = hours + ":" + minutes + " " + ampm;
     return time;
+  };
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (newMessage.trim() !== "") {
+      socket.emit(
+        "sendMessageEvent",
+        onSendMessageEvent(
+          USER_NAME,
+          ROOM_CODE,
+          newMessage,
+          getTime(new Date())
+        )
+      );
+      setNewMessage("");
+    }
   };
 
   return (
@@ -75,7 +98,16 @@ function ChatRoomPage() {
             <MessageItem />
             <MessageItem />
           </div>
-          <div className="chatroom__box__bottom">chat room box bottom</div>
+          <div className="chatroom__box__bottom">
+            <form onSubmit={handleSendMessage}>
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+              />
+              <button type="submit">Send</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

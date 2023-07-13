@@ -15,3 +15,17 @@ export function onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, ROOM_CODE) {
     ROOM_CODE: ROOM_CODE,
   };
 }
+
+export function onSendMessageEvent(USER_NAME, ROOM_CODE, MESSAGE, TIME) {
+  return {
+    USER_NAME: USER_NAME,
+    ROOM_CODE: ROOM_CODE,
+    MESSAGE: MESSAGE,
+    TIME: TIME,
+  };
+}
+
+export function onReceiveMessageEvent(data, setMessageList) {
+  console.log(`${data.author} sent message ${data.message}`);
+  setMessageList((prevData) => [...prevData, data]);
+}
