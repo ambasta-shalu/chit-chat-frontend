@@ -17,7 +17,7 @@ function NewRoomPage() {
     validate: validateNewRoom,
     onSubmit: async (values) => {
       try {
-        const roomCode = await nanoid();
+        const roomCode = nanoid();
         navigate(`/chat/${roomCode}`, {
           state: {
             IS_NEW_ROOM: true,
