@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/ChatRoomPage.css";
 import ChatTopBar from "../components/ChatTopBar";
-import RoomDetail from "../components/RoomDetail";
 import UserDetail from "../components/UserDetail";
 import MessageItem from "../components/MessageItem";
 import ShowToast from "../components/ShowToast";
