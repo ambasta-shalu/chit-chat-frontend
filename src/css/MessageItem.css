@@ -1,0 +1,40 @@
+.message_item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  margin: 0.5rem 1rem;
+}
+
+.you {
+  align-items: flex-end;
+}
+
+.other {
+  align-items: flex-start;
+}
+
+.you > .item__msg {
+  background-color: var(--GREEN_DARK);
+}
+
+.other > .item__msg {
+  background-color: var(--GREEN_LIGHT);
+}
+
+.item__author {
+  font-weight: 600;
+  margin: 0rem 0.25rem;
+}
+
+.item__msg {
+  max-width: 30rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.item__time {
+  margin: 0rem 0.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}

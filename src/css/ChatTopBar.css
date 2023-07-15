@@ -1,44 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-
 .chat__topbar {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--GREEN_DARK);
-}
-
-.chat__logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.2rem;
-  flex-wrap: nowrap;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.8));
-  background-color: transparent;
-  margin: 1rem;
-}
-
-.chat__logo__img {
-  width: 20%;
-}
-
-.chat__logo__title {
-  color: var(--COLOR_LIGHT);
-  font-family: "Amatic SC", cursive;
-  font-size: 2.5rem;
 }
 
 .chat__leave__btn {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   margin: 0rem 2rem;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 5px;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
   letter-spacing: 1px;
   background-color: var(--COLOR_LIGHT);
   color: var(--COLOR_DARK);

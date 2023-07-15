@@ -1,3 +1,10 @@
+.user__detail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 1rem;
+}
+
 .user__header {
   display: flex;
   flex-direction: row;
@@ -9,32 +16,33 @@
 }
 
 .user__icon {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
 
 .user__header > h1 {
   font-weight: 400;
   font-size: 1.6rem;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
 }
 
 .user__names {
-  margin: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  padding: 0.5rem;
-  height: 320px;
+  height: 22rem;
   overflow-y: auto;
 }
 
 .user__names > p {
   width: 100%;
   text-align: center;
-  background-color: var(--GREEN_DARK);
-  color: var(--COLOR_WHITE);
   padding: 0.5rem;
   border-radius: 1rem;
+  background-color: var(--GREY);
 }

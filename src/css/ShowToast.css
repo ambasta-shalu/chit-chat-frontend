@@ -1,0 +1,7 @@
+.show__toast {
+  padding: 0.5rem 4rem;
+  border-radius: 2rem;
+  margin: 0.5rem auto;
+  text-align: center;
+  background-color: var(--GREY);
+}

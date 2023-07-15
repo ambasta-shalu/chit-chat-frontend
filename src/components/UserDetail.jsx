@@ -7,11 +7,12 @@ function UserDetail() {
     <div className="user__detail">
       <div className="user__header">
         <FaUserSecret className="user__icon" />
-        <h1 className="nowrap">Users</h1>
+        <h1 className="nowrap">Room Users</h1>
       </div>
       <div className="user__names">
         <p>Lorem Ipsum</p>
-        <p>Ipsum Lorem</p>
+        <p>Ipsum Lorem lorem</p>
+        <p>Miss Sanyukta Ambastaaaaa</p>
       </div>
     </div>
   );

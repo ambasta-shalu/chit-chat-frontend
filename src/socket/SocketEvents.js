@@ -1,3 +1,5 @@
+import { toast } from "react-hot-toast";
+
 export function onConnectEvent(socket, setIsConnected) {
   console.log(`a user connected having id ${socket.id}`);
   setIsConnected(true);
@@ -16,6 +18,15 @@ export function onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, ROOM_CODE) {
   };
 }
 
+export function onToastEvent(msg, setMessageList) {
+  setMessageList((prevData) => [...prevData, msg]);
+}
+
+export function onErrorEvent(msg, navigate) {
+  toast.error(msg);
+  navigate("/");
+}
+
 export function onSendMessageEvent(USER_NAME, ROOM_CODE, MESSAGE, TIME) {
   return {
     USER_NAME: USER_NAME,
@@ -26,6 +37,5 @@ export function onSendMessageEvent(USER_NAME, ROOM_CODE, MESSAGE, TIME) {
 }
 
 export function onReceiveMessageEvent(data, setMessageList) {
-  console.log(`${data.author} sent message ${data.message}`);
   setMessageList((prevData) => [...prevData, data]);
 }
