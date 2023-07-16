@@ -87,7 +87,7 @@ function ChatRoomPage() {
       </div>
       <div className="chatroom__contents">
         <div>
-          <ChatTopBar />
+          <ChatTopBar ROOM_CODE={ROOM_CODE} />
           <div className="chatroom__box">
             {messageList.map((data, index) =>
               typeof data === "object" ? (

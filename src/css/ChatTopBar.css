@@ -3,18 +3,32 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-.chat__leave__btn {
+.chat__topbar > button {
   padding: 0.5rem 0.75rem;
-  margin: 0rem 2rem;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 5px;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
   letter-spacing: 1px;
+}
+
+.chat__invite__btn {
+  margin: 1.5rem 0rem;
+  background-color: var(--COLOR_DARK);
+  color: var(--COLOR_LIGHT);
+}
+
+.chat__invite__btn:hover {
+  background-color: var(--GREY);
+  color: var(--COLOR_BLACK);
+}
+
+.chat__leave__btn {
+  margin: 1.5rem;
   background-color: var(--COLOR_LIGHT);
   color: var(--COLOR_DARK);
 }
