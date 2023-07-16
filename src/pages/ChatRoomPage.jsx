@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../css/ChatRoomPage.css";
 import ChatTopBar from "../components/ChatTopBar";
 import UserDetail from "../components/UserDetail";
@@ -8,6 +8,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { socket } from "../socket/ConnectSocket";
 import { getTime } from "../helper/GetTime";
+import { BiSolidSend } from "react-icons/bi";
 import {
   onConnectEvent,
   onDisconnectEvent,
@@ -36,6 +37,11 @@ function ChatRoomPage() {
   const [messageList, setMessageList] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef?.current.scrollIntoView({ behaviour: "smooth" });
+  }, []);
 
   useEffect(() => {
     socket.on("connect", () => onConnectEvent(socket, setIsConnected));
@@ -107,6 +113,10 @@ function ChatRoomPage() {
             className="chatroom__textarea"
             placeholder="Type your message here..."
             type="text"
+            autoFocus="Yes"
+            wrap="hard"
+            cols="50"
+            ref={scrollRef}
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={(e) => {
@@ -117,7 +127,7 @@ function ChatRoomPage() {
             }}
           />
           <button className="chatroom__send__btn" onClick={handleSendMessage}>
-            Send
+            <BiSolidSend />
           </button>
         </div>
       </div>

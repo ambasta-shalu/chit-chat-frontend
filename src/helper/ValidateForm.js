@@ -7,6 +7,8 @@ export async function validateNewRoom(values) {
     errors.userName = "User Name Required 😐";
   } else if (values.userName.length < 4) {
     errors.userName = "User Name must be 4 characters or more 😐";
+  } else if (values.userName.length > 20) {
+    errors.userName = "User Name must be 20 characters or less 😐";
   }
 
   return errors;
@@ -23,6 +25,8 @@ export async function validateExistRoom(values) {
     errors.userName = "User Name Required 😐";
   } else if (values.userName.length < 4) {
     errors.userName = "User Name must be 4 characters or more 😐";
+  } else if (values.userName.length > 20) {
+    errors.userName = "User Name must be 20 characters or less 😐";
   } else if (!values.roomCode) {
     errors.roomCode = "Room Code Required 😐";
   }

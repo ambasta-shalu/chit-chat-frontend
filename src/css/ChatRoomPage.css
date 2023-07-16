@@ -11,17 +11,19 @@
 
 .chatroom__contents {
   flex: 3;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
+  background-color: var(--COLOR_LIGHT);
 }
 
 .chatroom__box {
   display: flex;
   flex-direction: column;
-  background-color: var(--COLOR_LIGHT);
   overflow-y: auto;
+  height: 30.5rem;
 }
 
 .chatroom__input {
@@ -34,14 +36,15 @@
 }
 
 .chatroom__textarea {
-  flex: 7;
-  background-color: var(--GREY);
+  flex: 10;
+  background-color: var(--GREEN_LIGHT);
   color: var(--COLOR_BLACK);
   outline: none;
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
   text-align: left;
+  resize: none;
 }
 
 .chatroom__send__btn {
@@ -51,6 +54,9 @@
   outline: none;
   cursor: pointer;
   border-radius: 5px;
-  background-color: var(--GREEN_LIGHT);
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 1.8rem;
+  background-color: var(--GREY);
   color: var(--COLOR_DARK);
 }
