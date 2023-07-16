@@ -17,6 +17,8 @@ import {
   onErrorEvent,
   onSendMessageEvent,
   onReceiveMessageEvent,
+  onGetRoomUsersEvent,
+  onReceiveRoomUsersEvent,
 } from "../socket/SocketEvents";
 
 function ChatRoomPage() {
@@ -37,6 +39,7 @@ function ChatRoomPage() {
   const [messageList, setMessageList] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const [userList, setUserList] = useState([]);
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -54,6 +57,10 @@ function ChatRoomPage() {
     socket.on("receiveMessageEvent", (data) =>
       onReceiveMessageEvent(data, setMessageList)
     );
+    socket.emit("getRoomUsersEvent", onGetRoomUsersEvent(ROOM_CODE));
+    socket.on("receiveRoomUsersEvent", (data) =>
+      onReceiveRoomUsersEvent(data, setUserList)
+    );
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
@@ -64,6 +71,9 @@ function ChatRoomPage() {
       socket.off("errorEvent", (msg) => onErrorEvent(msg, navigate));
       socket.off("receiveMessageEvent", (data) =>
         onReceiveMessageEvent(data, setMessageList)
+      );
+      socket.off("receiveRoomUsersEvent", (data) =>
+        onReceiveRoomUsersEvent(data, setUserList)
       );
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };

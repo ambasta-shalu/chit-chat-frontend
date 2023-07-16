@@ -39,3 +39,12 @@ export function onSendMessageEvent(USER_NAME, ROOM_CODE, MESSAGE, TIME) {
 export function onReceiveMessageEvent(data, setMessageList) {
   setMessageList((prevData) => [...prevData, data]);
 }
+
+export function onGetRoomUsersEvent(ROOM_CODE) {
+  return { ROOM_CODE: ROOM_CODE };
+}
+
+export function onReceiveRoomUsersEvent(data, setUserList) {
+  console.log(data);
+  setUserList(data);
+}
