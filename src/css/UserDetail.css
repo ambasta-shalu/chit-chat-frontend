@@ -1,29 +1,37 @@
 .user__detail {
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--COLOR_DARK);
+  color: var(--COLOR_LIGHT);
+  border-radius: 0rem 0rem 1rem 0rem;
 }
 
 .user__header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: nowrap;
   align-content: center;
+  justify-content: space-evenly;
 }
 
-.user__icon {
-  font-size: 1.6rem;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+.arrow__icon {
+  color: var(--COLOR_WHITE);
+  font-size: 2rem;
+}
+
+.arrow__icon:hover {
+  transform: scale(1.2);
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
 }
 
 .user__header > h1 {
   font-weight: 400;
-  font-size: 1.6rem;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+  font-size: 1.8rem;
 }
 
 .user__names {
@@ -35,7 +43,6 @@
   gap: 1rem;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  height: 22rem;
   overflow-y: auto;
 }
 
@@ -45,4 +52,5 @@
   padding: 0.5rem;
   border-radius: 1rem;
   background-color: var(--GREY);
+  color: var(--COLOR_BLACK);
 }

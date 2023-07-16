@@ -99,7 +99,7 @@ function ChatRoomPage() {
     <div className="chatroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="chatroom__menu">
-        <UserDetail />
+        <UserDetail userList={userList} />
       </div>
       <div className="chatroom__contents">
         <div>

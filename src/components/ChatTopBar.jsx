@@ -10,7 +10,7 @@ function ChatTopBar(props) {
 
   const handleCopy = () => {
     copy(`${ROOM_CODE}`);
-    toast.success("Room Code Copied to Clipboard! 📋");
+    toast.success("Room Code Copied! 📋");
   };
 
   const handleLeave = function () {
