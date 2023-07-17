@@ -19,6 +19,10 @@ import {
   onReceiveMessageEvent,
   onGetRoomUsersEvent,
   onReceiveRoomUsersEvent,
+  onSendStartTypingEvent,
+  onSendStopTypingEvent,
+  onGetStartTypingEvent,
+  onGetStopTypingEvent,
 } from "../socket/SocketEvents";
 
 function ChatRoomPage() {
@@ -41,6 +45,8 @@ function ChatRoomPage() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [userList, setUserList] = useState([]);
   const scrollRef = useRef();
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingPerson, setTypingPerson] = useState("");
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
@@ -61,6 +67,10 @@ function ChatRoomPage() {
     socket.on("receiveRoomUsersEvent", (data) =>
       onReceiveRoomUsersEvent(data, setUserList)
     );
+    socket.on("getStartTypingEvent", (name) =>
+      onGetStartTypingEvent(name, setTypingPerson)
+    );
+    socket.on("getStopTypingEvent", (name) => onGetStopTypingEvent(name));
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
@@ -75,6 +85,10 @@ function ChatRoomPage() {
       socket.off("receiveRoomUsersEvent", (data) =>
         onReceiveRoomUsersEvent(data, setUserList)
       );
+      socket.off("getStartTypingEvent", (name) =>
+        onGetStartTypingEvent(name, setTypingPerson)
+      );
+      socket.off("getStopTypingEvent", (name) => onGetStopTypingEvent(name));
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
@@ -92,6 +106,28 @@ function ChatRoomPage() {
         )
       );
       setNewMessage("");
+    }
+  };
+
+  // Function to emit typing event
+  const startTyping = () => {
+    if (!isTyping) {
+      socket.emit(
+        "sendStartTypingEvent",
+        onSendStartTypingEvent(USER_NAME, ROOM_CODE)
+      );
+      setIsTyping(true);
+    }
+  };
+
+  // Function to emit stopTyping event
+  const stopTyping = () => {
+    if (isTyping) {
+      socket.emit(
+        "sendStopTypingEvent",
+        onSendStopTypingEvent(USER_NAME, ROOM_CODE)
+      );
+      setIsTyping(false);
     }
   };
 
@@ -135,6 +171,8 @@ function ChatRoomPage() {
                 handleSendMessage(e);
               }
             }}
+            onInput={startTyping}
+            onBlur={stopTyping}
           />
           <button className="chatroom__send__btn" onClick={handleSendMessage}>
             <BiSolidSend />

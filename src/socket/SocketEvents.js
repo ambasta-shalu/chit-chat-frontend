@@ -45,6 +45,28 @@ export function onGetRoomUsersEvent(ROOM_CODE) {
 }
 
 export function onReceiveRoomUsersEvent(data, setUserList) {
-  console.log(data);
   setUserList(data);
+}
+
+export function onSendStartTypingEvent(USER_NAME, ROOM_CODE) {
+  return {
+    USER_NAME: USER_NAME,
+    ROOM_CODE: ROOM_CODE,
+  };
+}
+
+export function onSendStopTypingEvent(USER_NAME, ROOM_CODE) {
+  return {
+    USER_NAME: USER_NAME,
+    ROOM_CODE: ROOM_CODE,
+  };
+}
+
+export function onGetStartTypingEvent(name, setTypingPerson) {
+  console.log(`${name} is typing...`);
+  setTypingPerson(name);
+}
+
+export function onGetStopTypingEvent(name) {
+  console.log(`${name} stopped typing...`);
 }
