@@ -43,8 +43,8 @@ function ChatRoomPage() {
   const scrollRef = useRef();
 
   useEffect(() => {
-    scrollRef?.current.scrollIntoView({ behaviour: "smooth" });
-  }, []);
+    scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messageList]);
 
   useEffect(() => {
     socket.on("connect", () => onConnectEvent(socket, setIsConnected));
@@ -107,11 +107,13 @@ function ChatRoomPage() {
           <div className="chatroom__box">
             {messageList.map((data, index) =>
               typeof data === "object" ? (
-                <MessageItem
-                  key={index}
-                  isAuthor={USER_NAME === data.USER_NAME ? "you" : "other"}
-                  data={data}
-                />
+                <div ref={scrollRef}>
+                  <MessageItem
+                    key={index}
+                    isAuthor={USER_NAME === data.USER_NAME ? "you" : "other"}
+                    data={data}
+                  />
+                </div>
               ) : (
                 <ShowToast key={index} data={data} />
               )
@@ -126,7 +128,6 @@ function ChatRoomPage() {
             autoFocus="Yes"
             wrap="hard"
             cols="50"
-            ref={scrollRef}
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={(e) => {
