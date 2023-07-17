@@ -1,10 +1,11 @@
 import React from "react";
 import "../css/UserDetail.css";
 import { BiArrowBack } from "react-icons/bi";
+import { FaUserNinja } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function UserDetail(props) {
-  const { userList } = props;
+  const { userList, USER_NAME } = props;
   const navigate = useNavigate();
 
   const handleClick = function () {
@@ -23,7 +24,10 @@ function UserDetail(props) {
       </div>
       <div className="user__names">
         {userList.map((it, index) => (
-          <p key={index}>{it}</p>
+          <p key={index}>
+            {it === USER_NAME && <FaUserNinja />}
+            {it}
+          </p>
         ))}
       </div>
     </div>

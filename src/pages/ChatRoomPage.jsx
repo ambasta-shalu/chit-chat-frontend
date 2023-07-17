@@ -99,7 +99,7 @@ function ChatRoomPage() {
     <div className="chatroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="chatroom__menu">
-        <UserDetail userList={userList} />
+        <UserDetail userList={userList} USER_NAME={USER_NAME} />
       </div>
       <div className="chatroom__contents">
         <div>
@@ -107,9 +107,8 @@ function ChatRoomPage() {
           <div className="chatroom__box">
             {messageList.map((data, index) =>
               typeof data === "object" ? (
-                <div ref={scrollRef}>
+                <div key={index} ref={scrollRef}>
                   <MessageItem
-                    key={index}
                     isAuthor={USER_NAME === data.USER_NAME ? "you" : "other"}
                     data={data}
                   />
