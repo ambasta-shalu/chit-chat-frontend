@@ -31,6 +31,8 @@
   max-width: 30rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .item__time {
