@@ -18,10 +18,12 @@ function NewRoomPage() {
     onSubmit: async (values) => {
       try {
         const roomCode = nanoid();
+        const userId = nanoid();
         navigate(`/chat/${roomCode}`, {
           state: {
             IS_NEW_ROOM: true,
             USER_NAME: values.userName,
+            USER_ID: userId,
             ROOM_CODE: roomCode,
           },
           replace: true,

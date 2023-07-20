@@ -5,7 +5,7 @@ import copy from "copy-to-clipboard";
 import { toast } from "react-hot-toast";
 
 function ChatTopBar(props) {
-  const { ROOM_CODE } = props;
+  const { ROOM_CODE, typingStatus, isSomeoneTyping } = props;
   const navigate = useNavigate();
 
   const handleCopy = () => {
@@ -19,12 +19,15 @@ function ChatTopBar(props) {
 
   return (
     <div className="chat__topbar">
-      <button className="nowrap chat__invite__btn" onClick={handleCopy}>
-        Invite Other
-      </button>
-      <button className="nowrap chat__leave__btn" onClick={handleLeave}>
-        Leave Room
-      </button>
+      <div className="chat__typing">{isSomeoneTyping && typingStatus}</div>
+      <div className="chat__btns">
+        <button className="nowrap chat__invite__btn" onClick={handleCopy}>
+          Invite Other
+        </button>
+        <button className="nowrap chat__leave__btn" onClick={handleLeave}>
+          Leave Room
+        </button>
+      </div>
     </div>
   );
 }

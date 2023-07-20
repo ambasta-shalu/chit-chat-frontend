@@ -3,10 +3,17 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
-.chat__topbar > button {
+.chat__typing {
+  padding: 1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: rgb(128, 128, 128);
+}
+
+.chat__btns > button {
   padding: 0.5rem 0.75rem;
   border: none;
   outline: none;

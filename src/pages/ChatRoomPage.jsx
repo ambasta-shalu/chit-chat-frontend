@@ -26,7 +26,7 @@ import {
 } from "../socket/SocketEvents";
 
 function ChatRoomPage() {
-  let IS_NEW_ROOM, USER_NAME, ROOM_CODE;
+  let IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,6 +37,7 @@ function ChatRoomPage() {
   } else {
     IS_NEW_ROOM = location.state.IS_NEW_ROOM;
     USER_NAME = location.state.USER_NAME;
+    USER_ID = location.state.USER_ID;
     ROOM_CODE = location.state.ROOM_CODE;
   }
 
@@ -46,7 +47,8 @@ function ChatRoomPage() {
   const [userList, setUserList] = useState([]);
   const scrollRef = useRef();
   const [isTyping, setIsTyping] = useState(false);
-  const [typingPerson, setTypingPerson] = useState("");
+  const [typingStatus, setTypingStatus] = useState("");
+  const [isSomeoneTyping, setIsSomeoneTyping] = useState(false);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behaviour: "smooth" });
@@ -56,7 +58,7 @@ function ChatRoomPage() {
     socket.on("connect", () => onConnectEvent(socket, setIsConnected));
     socket.emit(
       "joinRoomEvent",
-      onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, ROOM_CODE)
+      onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE)
     );
     socket.on("toastEvent", (msg) => onToastEvent(msg, setMessageList));
     socket.on("errorEvent", (msg) => onErrorEvent(msg, navigate));
@@ -68,9 +70,11 @@ function ChatRoomPage() {
       onReceiveRoomUsersEvent(data, setUserList)
     );
     socket.on("getStartTypingEvent", (name) =>
-      onGetStartTypingEvent(name, setTypingPerson)
+      onGetStartTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
     );
-    socket.on("getStopTypingEvent", (name) => onGetStopTypingEvent(name));
+    socket.on("getStopTypingEvent", (name) =>
+      onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+    );
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
@@ -86,9 +90,11 @@ function ChatRoomPage() {
         onReceiveRoomUsersEvent(data, setUserList)
       );
       socket.off("getStartTypingEvent", (name) =>
-        onGetStartTypingEvent(name, setTypingPerson)
+        onGetStartTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
       );
-      socket.off("getStopTypingEvent", (name) => onGetStopTypingEvent(name));
+      socket.off("getStopTypingEvent", (name) =>
+        onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+      );
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
@@ -100,6 +106,7 @@ function ChatRoomPage() {
         "sendMessageEvent",
         onSendMessageEvent(
           USER_NAME,
+          USER_ID,
           ROOM_CODE,
           newMessage,
           getTime(new Date())
@@ -109,7 +116,7 @@ function ChatRoomPage() {
     }
   };
 
-  // Function to emit typing event
+  // Function to emit startTyping event
   const startTyping = () => {
     if (!isTyping) {
       socket.emit(
@@ -135,17 +142,21 @@ function ChatRoomPage() {
     <div className="chatroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="chatroom__menu">
-        <UserDetail userList={userList} USER_NAME={USER_NAME} />
+        <UserDetail userList={userList} USER_ID={USER_ID} />
       </div>
       <div className="chatroom__contents">
         <div>
-          <ChatTopBar ROOM_CODE={ROOM_CODE} />
+          <ChatTopBar
+            ROOM_CODE={ROOM_CODE}
+            typingStatus={typingStatus}
+            isSomeoneTyping={isSomeoneTyping}
+          />
           <div className="chatroom__box">
             {messageList.map((data, index) =>
               typeof data === "object" ? (
                 <div key={index} ref={scrollRef}>
                   <MessageItem
-                    isAuthor={USER_NAME === data.USER_NAME ? "you" : "other"}
+                    isAuthor={USER_ID === data.USER_ID ? "you" : "other"}
                     data={data}
                   />
                 </div>

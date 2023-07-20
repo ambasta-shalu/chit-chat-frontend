@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import { Toaster, toast } from "react-hot-toast";
 import { validateExistRoom } from "../helper/ValidateForm";
 import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
 
 function ExistRoomPage() {
   const navigate = useNavigate();
@@ -17,10 +18,12 @@ function ExistRoomPage() {
     validate: validateExistRoom,
     onSubmit: async (values) => {
       try {
+        const userId = nanoid();
         navigate(`/chat/${values.roomCode}`, {
           state: {
             IS_NEW_ROOM: false,
             USER_NAME: values.userName,
+            USER_ID: userId,
             ROOM_CODE: values.roomCode,
           },
           replace: true,

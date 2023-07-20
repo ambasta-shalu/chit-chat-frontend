@@ -10,10 +10,11 @@ export function onDisconnectEvent(socket, setIsConnected) {
   setIsConnected(false);
 }
 
-export function onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, ROOM_CODE) {
+export function onJoinRoomEvent(IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE) {
   return {
     IS_NEW_ROOM: IS_NEW_ROOM,
     USER_NAME: USER_NAME,
+    USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
   };
 }
@@ -27,9 +28,16 @@ export function onErrorEvent(msg, navigate) {
   navigate("/");
 }
 
-export function onSendMessageEvent(USER_NAME, ROOM_CODE, MESSAGE, TIME) {
+export function onSendMessageEvent(
+  USER_NAME,
+  USER_ID,
+  ROOM_CODE,
+  MESSAGE,
+  TIME
+) {
   return {
     USER_NAME: USER_NAME,
+    USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
     MESSAGE: MESSAGE,
     TIME: TIME,
@@ -62,11 +70,20 @@ export function onSendStopTypingEvent(USER_NAME, ROOM_CODE) {
   };
 }
 
-export function onGetStartTypingEvent(name, setTypingPerson) {
-  console.log(`${name} is typing...`);
-  setTypingPerson(name);
+export function onGetStartTypingEvent(
+  name,
+  setTypingStatus,
+  setIsSomeoneTyping
+) {
+  setTypingStatus(`${name} is typing...`);
+  setIsSomeoneTyping(true);
 }
 
-export function onGetStopTypingEvent(name) {
-  console.log(`${name} stopped typing...`);
+export function onGetStopTypingEvent(
+  name,
+  setTypingStatus,
+  setIsSomeoneTyping
+) {
+  setTypingStatus(`${name} stopped typing...`);
+  setIsSomeoneTyping(false);
 }

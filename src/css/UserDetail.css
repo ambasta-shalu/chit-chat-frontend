@@ -3,10 +3,17 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
   background-color: var(--COLOR_DARK);
   color: var(--COLOR_LIGHT);
-  border-radius: 0rem 0rem 1rem 0rem;
+}
+
+.user__detail__wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .user__header {
@@ -30,12 +37,12 @@
 }
 
 .user__header > h1 {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 1.8rem;
 }
 
 .user__names {
-  margin: 0.5rem;
+  margin: 0.5rem 0rem;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -58,4 +65,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.user__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
