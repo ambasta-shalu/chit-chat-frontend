@@ -75,7 +75,7 @@ export function onGetStartTypingEvent(
   setTypingStatus,
   setIsSomeoneTyping
 ) {
-  setTypingStatus(`${name} is typing...`);
+  setTypingStatus(`${name} is typing ...`);
   setIsSomeoneTyping(true);
 }
 
@@ -84,6 +84,6 @@ export function onGetStopTypingEvent(
   setTypingStatus,
   setIsSomeoneTyping
 ) {
-  setTypingStatus(`${name} stopped typing...`);
+  setTypingStatus(`${name} stopped typing ...`);
   setIsSomeoneTyping(false);
 }
