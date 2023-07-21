@@ -14,6 +14,7 @@ import { IoMdDocument } from "react-icons/io";
 import { AiFillPicture } from "react-icons/ai";
 import { PiPlayFill } from "react-icons/pi";
 import { IoMdHeadset } from "react-icons/io";
+import InputFileUpload from "../components/InputFileUpload";
 import {
   onConnectEvent,
   onDisconnectEvent,
@@ -29,6 +30,12 @@ import {
   onGetStartTypingEvent,
   onGetStopTypingEvent,
 } from "../socket/SocketEvents";
+import {
+  allowedFileTypes,
+  allowedPictureTypes,
+  allowedVideoTypes,
+  allowedAudioTypes,
+} from "../utils/AllowedInputTypes";
 
 function ChatRoomPage() {
   let IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE;
@@ -55,6 +62,16 @@ function ChatRoomPage() {
   const [typingStatus, setTypingStatus] = useState("");
   const [isSomeoneTyping, setIsSomeoneTyping] = useState(false);
   const [isDivVisible, setIsDivVisible] = useState(false);
+
+  const fileInputRef = useRef(null);
+  const pictureInputRef = useRef(null);
+  const videoInputRef = useRef(null);
+  const audioInputRef = useRef(null);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedPicture, setSelectedPicture] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedAudio, setSelectedAudio] = useState(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -106,6 +123,74 @@ function ChatRoomPage() {
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
+
+  const handleFileIconClick = function () {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && allowedFileTypes.includes(file.type)) {
+      setSelectedFile(file);
+    } else {
+      setSelectedFile(null);
+      // Optionally show an error message or provide feedback to the user.
+      console.log(
+        "Invalid file type. Please select a .doc, .docx, .xml, .txt, or .pdf file."
+      );
+    }
+  };
+
+  const handlePictureIconClick = function () {
+    pictureInputRef.current?.click();
+  };
+
+  const handlePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file && allowedPictureTypes.includes(file.type)) {
+      setSelectedPicture(URL.createObjectURL(file));
+    } else {
+      setSelectedPicture(null);
+      // Optionally show an error message or provide feedback to the user.
+      console.log(
+        "Invalid file type. Please select an image (JPEG, PNG) or GIF file."
+      );
+    }
+  };
+
+  const handleVideoIconClick = function () {
+    videoInputRef.current?.click();
+  };
+
+  const handleVideoChange = (e) => {
+    const file = e.target.files[0];
+    if (file && allowedVideoTypes.includes(file.type)) {
+      setSelectedVideo(URL.createObjectURL(file));
+    } else {
+      setSelectedVideo(null);
+      // Optionally show an error message or provide feedback to the user.
+      console.log(
+        "Invalid file type. Please select a video (MP4, WebM, Ogg) or GIF file."
+      );
+    }
+  };
+
+  const handleAudioIconClick = function () {
+    audioInputRef.current?.click();
+  };
+
+  const handleAudioChange = (e) => {
+    const file = e.target.files[0];
+    if (file && allowedAudioTypes.includes(file.type)) {
+      setSelectedAudio(URL.createObjectURL(file));
+    } else {
+      setSelectedAudio(null);
+      // Optionally show an error message or provide feedback to the user.
+      console.log(
+        "Invalid file type. Please select an audio file (MP3, Ogg, WAV, WebM)."
+      );
+    }
+  };
 
   const handleClipClick = function () {
     // toggle chatroom__float__menu div visibility
@@ -193,16 +278,32 @@ function ChatRoomPage() {
           <div className="chatroom__attachment__menu">
             {isDivVisible && (
               <div className="chatroom__float__menu">
-                <div className="wrapper file__wrapper" title="File">
+                <div
+                  className="wrapper file__wrapper"
+                  title="File"
+                  onClick={handleFileIconClick}
+                >
                   <IoMdDocument className="icon" />
                 </div>
-                <div className="wrapper picture__wrapper" title="Picture">
+                <div
+                  className="wrapper picture__wrapper"
+                  title="Picture"
+                  onClick={handlePictureIconClick}
+                >
                   <AiFillPicture className="icon" />
                 </div>
-                <div className="wrapper video__wrapper" title="Video">
+                <div
+                  className="wrapper video__wrapper"
+                  title="Video"
+                  onClick={handleVideoIconClick}
+                >
                   <PiPlayFill className="icon" />
                 </div>
-                <div className="wrapper audio__wrapper" title="Audio">
+                <div
+                  className="wrapper audio__wrapper"
+                  title="Audio"
+                  onClick={handleAudioIconClick}
+                >
                   <IoMdHeadset className="icon" />
                 </div>
               </div>
@@ -226,6 +327,17 @@ function ChatRoomPage() {
           <button className="chatroom__send__btn" onClick={handleSendMessage}>
             <BiSolidSend />
           </button>
+
+          <InputFileUpload
+            fileInputRef={fileInputRef}
+            handleFileChange={handleFileChange}
+            pictureInputRef={pictureInputRef}
+            handlePictureChange={handlePictureChange}
+            videoInputRef={videoInputRef}
+            handleVideoChange={handleVideoChange}
+            audioInputRef={audioInputRef}
+            handleAudioChange={handleAudioChange}
+          />
         </div>
       </div>
     </div>
