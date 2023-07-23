@@ -47,6 +47,9 @@ function ExistRoomPage() {
             placeholder="User Name"
             id="userName"
             name="userName"
+            required
+            autoFocus
+            maxLength={20}
             onChange={formik.handleChange}
             value={formik.values.userName}
           />
@@ -58,6 +61,8 @@ function ExistRoomPage() {
             placeholder="Room Code"
             id="roomCode"
             name="roomCode"
+            required
+            autoComplete="off"
             onChange={formik.handleChange}
             value={formik.values.roomCode}
           />

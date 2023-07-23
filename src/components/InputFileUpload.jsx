@@ -1,14 +1,11 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-function InputFileUpload(props) {
+// Wrap the component using forwardRef
+const InputFileUpload = forwardRef((props, ref) => {
   const {
-    fileInputRef,
     handleFileChange,
-    pictureInputRef,
     handlePictureChange,
-    videoInputRef,
     handleVideoChange,
-    audioInputRef,
     handleAudioChange,
   } = props;
 
@@ -17,7 +14,7 @@ function InputFileUpload(props) {
       <input
         type="file"
         accept=".doc,.docx,.xml,.txt,.pdf"
-        ref={fileInputRef}
+        ref={ref.fileInputRef.current} // Use the forwarded ref
         style={{ display: "none" }}
         onChange={handleFileChange}
       />
@@ -25,7 +22,7 @@ function InputFileUpload(props) {
       <input
         type="file"
         accept="image/*,.gif"
-        ref={pictureInputRef}
+        ref={ref.pictureInputRef.current} // Use the forwarded ref
         style={{ display: "none" }}
         onChange={handlePictureChange}
       />
@@ -33,7 +30,7 @@ function InputFileUpload(props) {
       <input
         type="file"
         accept="video/mp4,video/webm,video/ogg,image/gif"
-        ref={videoInputRef}
+        ref={ref.videoInputRef.current} // Use the forwarded ref
         style={{ display: "none" }}
         onChange={handleVideoChange}
       />
@@ -41,12 +38,12 @@ function InputFileUpload(props) {
       <input
         type="file"
         accept="audio/mpeg,audio/ogg,audio/wav,audio/webm"
-        ref={audioInputRef}
+        ref={ref.audioInputRef.current} // Use the forwarded ref
         style={{ display: "none" }}
         onChange={handleAudioChange}
       />
     </div>
   );
-}
+});
 
 export default InputFileUpload;

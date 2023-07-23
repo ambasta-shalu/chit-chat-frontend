@@ -87,3 +87,14 @@ export function onGetStopTypingEvent(
   setTypingStatus(`${name} stopped typing ...`);
   setIsSomeoneTyping(false);
 }
+
+export function onSendFileEvent(FORM_DATA, ROOM_CODE) {
+  return {
+    FORM_DATA: FORM_DATA,
+    ROOM_CODE: ROOM_CODE,
+  };
+}
+
+export function onReceiveFileEvent(file) {
+  console.log(`file received ${file}`);
+}

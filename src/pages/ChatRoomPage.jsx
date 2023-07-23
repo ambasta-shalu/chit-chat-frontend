@@ -29,6 +29,8 @@ import {
   onSendStopTypingEvent,
   onGetStartTypingEvent,
   onGetStopTypingEvent,
+  onSendFileEvent,
+  onReceiveFileEvent,
 } from "../socket/SocketEvents";
 import {
   allowedFileTypes,
@@ -68,6 +70,13 @@ function ChatRoomPage() {
   const videoInputRef = useRef(null);
   const audioInputRef = useRef(null);
 
+  const inputRefs = {
+    fileInputRef,
+    pictureInputRef,
+    videoInputRef,
+    audioInputRef,
+  };
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedPicture, setSelectedPicture] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -100,6 +109,7 @@ function ChatRoomPage() {
     socket.on("getStopTypingEvent", (name) =>
       onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
     );
+    socket.on("receiveFileEvent", (file) => onReceiveFileEvent(file));
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
@@ -120,12 +130,22 @@ function ChatRoomPage() {
       socket.off("getStopTypingEvent", (name) =>
         onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
       );
+      socket.off("receiveFileEvent", (file) => onReceiveFileEvent(file));
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
 
   const handleFileIconClick = function () {
     fileInputRef.current?.click();
+
+    if (!selectedFile) return;
+
+    const FORM_DATA = new FormData();
+    FORM_DATA.append("file", selectedFile);
+
+    socket.emit("sendFileEvent", onSendFileEvent(FORM_DATA, ROOM_CODE));
+
+    setSelectedFile(null); // Reset the selected file
   };
 
   const handleFileChange = (e) => {
@@ -329,13 +349,10 @@ function ChatRoomPage() {
           </button>
 
           <InputFileUpload
-            fileInputRef={fileInputRef}
+            ref={inputRefs}
             handleFileChange={handleFileChange}
-            pictureInputRef={pictureInputRef}
             handlePictureChange={handlePictureChange}
-            videoInputRef={videoInputRef}
             handleVideoChange={handleVideoChange}
-            audioInputRef={audioInputRef}
             handleAudioChange={handleAudioChange}
           />
         </div>

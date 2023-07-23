@@ -47,6 +47,9 @@ function NewRoomPage() {
             placeholder="User Name"
             id="userName"
             name="userName"
+            required
+            autoFocus
+            maxLength={20}
             onChange={formik.handleChange}
             value={formik.values.userName}
           />
