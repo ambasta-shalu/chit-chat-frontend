@@ -70,13 +70,6 @@ function ChatRoomPage() {
   const videoInputRef = useRef(null);
   const audioInputRef = useRef(null);
 
-  const inputRefs = {
-    fileInputRef,
-    pictureInputRef,
-    videoInputRef,
-    audioInputRef,
-  };
-
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedPicture, setSelectedPicture] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -349,7 +342,12 @@ function ChatRoomPage() {
           </button>
 
           <InputFileUpload
-            ref={inputRefs}
+            ref={{
+              fileInputRef,
+              pictureInputRef,
+              videoInputRef,
+              audioInputRef,
+            }}
             handleFileChange={handleFileChange}
             handlePictureChange={handlePictureChange}
             handleVideoChange={handleVideoChange}
