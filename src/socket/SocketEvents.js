@@ -33,7 +33,8 @@ export function onSendMessageEvent(
   USER_NAME,
   USER_ID,
   ROOM_CODE,
-  MESSAGE,
+  CONTENT,
+  CONTENT_NAME,
   TIME
 ) {
   return {
@@ -41,7 +42,8 @@ export function onSendMessageEvent(
     USER_NAME: USER_NAME,
     USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
-    MESSAGE: MESSAGE,
+    CONTENT: CONTENT,
+    CONTENT_NAME: CONTENT_NAME,
     TIME: TIME,
   };
 }

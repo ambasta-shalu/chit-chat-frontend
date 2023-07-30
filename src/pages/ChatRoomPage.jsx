@@ -152,6 +152,7 @@ function ChatRoomPage() {
           USER_ID,
           ROOM_CODE,
           file,
+          file.name,
           getTime(new Date())
         )
       );
@@ -239,6 +240,7 @@ function ChatRoomPage() {
           USER_ID,
           ROOM_CODE,
           newMessage,
+          "",
           getTime(new Date())
         )
       );
