@@ -29,6 +29,7 @@ export function onErrorEvent(msg, navigate) {
 }
 
 export function onSendMessageEvent(
+  TYPE,
   USER_NAME,
   USER_ID,
   ROOM_CODE,
@@ -36,6 +37,7 @@ export function onSendMessageEvent(
   TIME
 ) {
   return {
+    TYPE: TYPE,
     USER_NAME: USER_NAME,
     USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
@@ -86,15 +88,4 @@ export function onGetStopTypingEvent(
 ) {
   setTypingStatus(`${name} stopped typing ...`);
   setIsSomeoneTyping(false);
-}
-
-export function onSendFileEvent(FORM_DATA, ROOM_CODE) {
-  return {
-    FORM_DATA: FORM_DATA,
-    ROOM_CODE: ROOM_CODE,
-  };
-}
-
-export function onReceiveFileEvent(file) {
-  console.log(`file received ${file}`);
 }

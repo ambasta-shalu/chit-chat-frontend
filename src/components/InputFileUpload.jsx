@@ -31,7 +31,7 @@ const InputFileUpload = forwardRef((props, ref) => {
 
       <input
         type="file"
-        accept="video/mp4,video/webm,video/ogg,image/gif"
+        accept="video/mp4,video/webm,video/ogg"
         ref={videoInputRef} // Use the forwarded ref
         style={{ display: "none" }}
         onChange={handleVideoChange}

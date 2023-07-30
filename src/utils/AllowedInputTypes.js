@@ -8,12 +8,7 @@ export const allowedFileTypes = [
 
 export const allowedPictureTypes = ["image/jpeg", "image/png", "image/gif"];
 
-export const allowedVideoTypes = [
-  "video/mp4",
-  "video/webm",
-  "video/ogg",
-  "image/gif",
-];
+export const allowedVideoTypes = ["video/mp4", "video/webm", "video/ogg"];
 
 export const allowedAudioTypes = [
   "audio/mpeg",

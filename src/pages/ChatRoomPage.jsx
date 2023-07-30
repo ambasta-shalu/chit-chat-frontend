@@ -1,20 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../css/ChatRoomPage.css";
+
 import ChatTopBar from "../components/ChatTopBar";
 import UserDetail from "../components/UserDetail";
 import MessageItem from "../components/MessageItem";
+import FileItem from "../components/FileItem";
+import PictureItem from "../components/PictureItem";
+import VideoItem from "../components/VideoItem";
+import AudioItem from "../components/AudioItem";
 import ShowToast from "../components/ShowToast";
+import InputFileUpload from "../components/InputFileUpload";
+
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
+
 import { socket } from "../socket/ConnectSocket";
 import { getTime } from "../helper/GetTime";
+
 import { BiSolidSend } from "react-icons/bi";
 import { LuPaperclip } from "react-icons/lu";
-import { IoMdDocument } from "react-icons/io";
+import { IoMdDocument, IoMdHeadset } from "react-icons/io";
 import { AiFillPicture } from "react-icons/ai";
 import { PiPlayFill } from "react-icons/pi";
-import { IoMdHeadset } from "react-icons/io";
-import InputFileUpload from "../components/InputFileUpload";
+
 import {
   onConnectEvent,
   onDisconnectEvent,
@@ -29,9 +37,8 @@ import {
   onSendStopTypingEvent,
   onGetStartTypingEvent,
   onGetStopTypingEvent,
-  onSendFileEvent,
-  onReceiveFileEvent,
 } from "../socket/SocketEvents";
+
 import {
   allowedFileTypes,
   allowedPictureTypes,
@@ -59,12 +66,12 @@ function ChatRoomPage() {
   const [newMessage, setNewMessage] = useState("");
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [userList, setUserList] = useState([]);
-  const scrollRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [typingStatus, setTypingStatus] = useState("");
   const [isSomeoneTyping, setIsSomeoneTyping] = useState(false);
   const [isDivVisible, setIsDivVisible] = useState(false);
 
+  const scrollRef = useRef(null);
   const fileInputRef = useRef(null);
   const pictureInputRef = useRef(null);
   const videoInputRef = useRef(null);
@@ -102,7 +109,6 @@ function ChatRoomPage() {
     socket.on("getStopTypingEvent", (name) =>
       onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
     );
-    socket.on("receiveFileEvent", (file) => onReceiveFileEvent(file));
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
@@ -123,28 +129,33 @@ function ChatRoomPage() {
       socket.off("getStopTypingEvent", (name) =>
         onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
       );
-      socket.off("receiveFileEvent", (file) => onReceiveFileEvent(file));
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
   }, []);
 
   const handleFileIconClick = function () {
     fileInputRef.current?.click();
-
-    if (!selectedFile) return;
-
-    const FORM_DATA = new FormData();
-    FORM_DATA.append("file", selectedFile);
-
-    socket.emit("sendFileEvent", onSendFileEvent(FORM_DATA, ROOM_CODE));
-
-    setSelectedFile(null); // Reset the selected file
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && allowedFileTypes.includes(file.type)) {
       setSelectedFile(file);
+
+      console.log(`selected file name : `, file.name); // Display the file name
+
+      socket.emit(
+        "sendMessageEvent",
+        onSendMessageEvent(
+          "FILE",
+          USER_NAME,
+          USER_ID,
+          ROOM_CODE,
+          file,
+          getTime(new Date())
+        )
+      );
+      setSelectedFile(null); // Reset the selected file
     } else {
       setSelectedFile(null);
       // Optionally show an error message or provide feedback to the user.
@@ -223,6 +234,7 @@ function ChatRoomPage() {
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
+          "MESSAGE",
           USER_NAME,
           USER_ID,
           ROOM_CODE,
@@ -271,14 +283,64 @@ function ChatRoomPage() {
             typingStatus={typingStatus}
             isSomeoneTyping={isSomeoneTyping}
           />
+
           <div className="chatroom__box">
             {messageList.map((data, index) =>
               typeof data === "object" ? (
                 <div key={index} ref={scrollRef}>
-                  <MessageItem
-                    isAuthor={USER_ID === data.USER_ID ? "you" : "other"}
-                    data={data}
-                  />
+                  {(() => {
+                    switch (data.TYPE) {
+                      case "MESSAGE":
+                        return (
+                          <MessageItem
+                            isAuthor={
+                              USER_ID === data.USER_ID ? "you" : "other"
+                            }
+                            data={data}
+                          />
+                        );
+
+                      case "FILE":
+                        return (
+                          <FileItem
+                            isAuthor={
+                              USER_ID === data.USER_ID ? "you" : "other"
+                            }
+                            data={data}
+                          />
+                        );
+
+                      case "PICTURE":
+                        return (
+                          <PictureItem
+                            isAuthor={
+                              USER_ID === data.USER_ID ? "you" : "other"
+                            }
+                            data={data}
+                          />
+                        );
+
+                      case "VIDEO":
+                        return (
+                          <VideoItem
+                            isAuthor={
+                              USER_ID === data.USER_ID ? "you" : "other"
+                            }
+                            data={data}
+                          />
+                        );
+
+                      case "AUDIO":
+                        return (
+                          <AudioItem
+                            isAuthor={
+                              USER_ID === data.USER_ID ? "you" : "other"
+                            }
+                            data={data}
+                          />
+                        );
+                    }
+                  })()}
                 </div>
               ) : (
                 <ShowToast key={index} data={data} />
