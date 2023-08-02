@@ -6,12 +6,14 @@ function MessageItem(props) {
 
   return (
     <div
-      className={isAuthor === "you" ? "you message_item" : "other message_item"}
+      className={
+        isAuthor === "you" ? "you message__item" : "other message__item"
+      }
     >
       <div className="item__author">
         {isAuthor === "you" ? "You" : data.USER_NAME}
       </div>
-      <div className="item__msg">{data.CONTENT}</div>
+      <div className="item__content">{data.CONTENT}</div>
       <div className="item__time">{data.TIME}</div>
     </div>
   );

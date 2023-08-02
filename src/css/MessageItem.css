@@ -1,8 +1,8 @@
-.message_item {
+.message__item {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 0.25rem;
+  gap: 0.2rem;
   margin: 0.5rem 1rem;
 }
 
@@ -14,20 +14,21 @@
   align-items: flex-start;
 }
 
-.you > .item__msg {
+.you > .item__content {
   background-color: var(--GREEN_DARK);
 }
 
-.other > .item__msg {
+.other > .item__content {
   background-color: var(--GREEN_LIGHT);
 }
 
 .item__author {
   font-weight: 600;
   margin: 0rem 0.25rem;
+  font-size: 0.8rem;
 }
 
-.item__msg {
+.item__content {
   max-width: 30rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -37,6 +38,6 @@
 
 .item__time {
   margin: 0rem 0.25rem;
-  font-size: 0.8rem;
   letter-spacing: 1px;
+  font-size: 0.65rem;
 }

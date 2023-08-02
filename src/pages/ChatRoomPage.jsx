@@ -142,8 +142,6 @@ function ChatRoomPage() {
     if (file && allowedFileTypes.includes(file.type)) {
       setSelectedFile(file);
 
-      console.log(`selected file name : `, file.name); // Display the file name
-
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
@@ -160,10 +158,11 @@ function ChatRoomPage() {
     } else {
       setSelectedFile(null);
       // Optionally show an error message or provide feedback to the user.
-      console.log(
-        "Invalid file type. Please select a .doc, .docx, .xml, .txt, or .pdf file."
+      toast.error(
+        `Invalid file type. Please select a .doc, .docx, .xml, .txt, or .pdf file. 😑`
       );
     }
+    setIsDivVisible(false);
   };
 
   const handlePictureIconClick = function () {
@@ -177,10 +176,11 @@ function ChatRoomPage() {
     } else {
       setSelectedPicture(null);
       // Optionally show an error message or provide feedback to the user.
-      console.log(
-        "Invalid file type. Please select an image (JPEG, PNG) or GIF file."
+      toast.error(
+        `Invalid file type. Please select an image (JPEG, PNG, SVG) or GIF file. 😑`
       );
     }
+    setIsDivVisible(false);
   };
 
   const handleVideoIconClick = function () {
@@ -194,10 +194,11 @@ function ChatRoomPage() {
     } else {
       setSelectedVideo(null);
       // Optionally show an error message or provide feedback to the user.
-      console.log(
-        "Invalid file type. Please select a video (MP4, WebM, Ogg) or GIF file."
+      toast.error(
+        `Invalid file type. Please select a video (MP4, WebM, Ogg) file. 😑`
       );
     }
+    setIsDivVisible(false);
   };
 
   const handleAudioIconClick = function () {
@@ -211,10 +212,11 @@ function ChatRoomPage() {
     } else {
       setSelectedAudio(null);
       // Optionally show an error message or provide feedback to the user.
-      console.log(
-        "Invalid file type. Please select an audio file (MP3, Ogg, WAV, WebM)."
+      toast.error(
+        `Invalid file type. Please select an audio file (MP3, Ogg, WAV, WebM) file. 😑`
       );
     }
+    setIsDivVisible(false);
   };
 
   const handleClipClick = function () {
@@ -245,6 +247,7 @@ function ChatRoomPage() {
         )
       );
       setNewMessage("");
+      setIsDivVisible(false);
     }
   };
 

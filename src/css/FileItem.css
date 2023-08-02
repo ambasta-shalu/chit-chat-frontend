@@ -1,0 +1,47 @@
+.file__item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.2rem;
+  margin: 0.5rem 1rem;
+}
+
+.you > .file__content {
+  background-color: var(--GREEN_DARK);
+}
+
+.other > .file__content {
+  background-color: var(--GREEN_LIGHT);
+}
+
+.file__content {
+  max-width: 20rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.item__download {
+  background-color: var(--COLOR_DARK);
+  padding: 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.download__icon {
+  color: var(--COLOR_LIGHT);
+  font-size: 1.2rem;
+}
+
+.file__size {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}

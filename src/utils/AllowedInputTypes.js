@@ -6,7 +6,20 @@ export const allowedFileTypes = [
   "application/pdf",
 ];
 
-export const allowedPictureTypes = ["image/jpeg", "image/png", "image/gif"];
+export const allowedPictureTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/bmp",
+  "image/webp",
+  "image/tiff",
+  "image/svg+xml",
+  "image/x-icon",
+  "image/vnd.microsoft.icon",
+  "image/vnd.wap.wbmp",
+  "image/heic",
+  "image/heif",
+];
 
 export const allowedVideoTypes = ["video/mp4", "video/webm", "video/ogg"];
 
