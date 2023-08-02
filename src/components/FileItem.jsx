@@ -44,7 +44,7 @@ function FileItem(props) {
         </div>
         <div>
           <div>{data.CONTENT_NAME}</div>
-          <div className="file__size">0 MB</div>
+          <div className="file__size">{data.CONTENT_SIZE}</div>
         </div>
       </div>
 

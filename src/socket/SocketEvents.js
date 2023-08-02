@@ -35,6 +35,7 @@ export function onSendMessageEvent(
   ROOM_CODE,
   CONTENT,
   CONTENT_NAME,
+  CONTENT_SIZE,
   TIME
 ) {
   return {
@@ -44,6 +45,7 @@ export function onSendMessageEvent(
     ROOM_CODE: ROOM_CODE,
     CONTENT: CONTENT,
     CONTENT_NAME: CONTENT_NAME,
+    CONTENT_SIZE: CONTENT_SIZE,
     TIME: TIME,
   };
 }

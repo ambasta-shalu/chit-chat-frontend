@@ -45,6 +45,7 @@ import {
   allowedVideoTypes,
   allowedAudioTypes,
 } from "../utils/AllowedInputTypes";
+import { getFileSize } from "../helper/CalculateFileSize";
 
 function ChatRoomPage() {
   let IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE;
@@ -142,6 +143,9 @@ function ChatRoomPage() {
     if (file && allowedFileTypes.includes(file.type)) {
       setSelectedFile(file);
 
+      const FILE_SIZE = getFileSize(file.size);
+      const TIME = getTime(new Date());
+
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
@@ -151,7 +155,8 @@ function ChatRoomPage() {
           ROOM_CODE,
           file,
           file.name,
-          getTime(new Date())
+          FILE_SIZE,
+          TIME
         )
       );
       setSelectedFile(null); // Reset the selected file
@@ -234,6 +239,21 @@ function ChatRoomPage() {
   const handleSendMessage = function (e) {
     e.preventDefault();
     if (newMessage.trim() !== "") {
+      const TIME = getTime(new Date());
+
+      const data = {
+        TYPE: "MESSAGE",
+        USER_NAME: USER_NAME,
+        USER_ID: USER_ID,
+        ROOM_CODE: ROOM_CODE,
+        CONTENT: newMessage,
+        CONTENT_NAME: "",
+        CONTENT_SIZE: "",
+        TIME: TIME,
+      };
+
+      setMessageList((prevData) => [...prevData, data]);
+
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
@@ -243,7 +263,8 @@ function ChatRoomPage() {
           ROOM_CODE,
           newMessage,
           "",
-          getTime(new Date())
+          "",
+          TIME
         )
       );
       setNewMessage("");
