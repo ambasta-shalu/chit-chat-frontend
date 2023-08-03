@@ -9,15 +9,14 @@
   --COLOR_WHITE: rgb(255, 255, 255);
   --COLOR_BLACK: rgb(0, 0, 0);
   --BODY_BG_IMG: linear-gradient(
-    to right,
-    var(--BLUE_LIGHT),
+    to left,
+    var(--GREEN_DARK),
     var(--GREEN_LIGHT)
   );
   --COLOR_LIGHT: #e6ebe4;
   --COLOR_DARK: #30312b;
   --GREEN_LIGHT: #a9d3a5;
   --GREEN_DARK: #9ad068;
-  --BLUE_LIGHT: #a6dddf;
   --GREY: #b1b8ac;
 
   /* SHADOW */

@@ -1,46 +1,25 @@
 import React from "react";
 import "../css/FileItem.css";
-import axios from "axios";
-import { SERVER_DOMAIN } from "../utils/Constants";
-import { Toaster, toast } from "react-hot-toast";
-import { downloadMedia } from "../helper/DownloadMedia";
-import { ImArrowDown2 } from "react-icons/im";
+import { handleDownloadMedia } from "../helper/HandleDownloadMedia";
+import { BsDownload } from "react-icons/bs";
 
 function FileItem(props) {
   const { isAuthor, data } = props;
 
-  // Make an Axios GET request to download the file
-  const handleDownload = async () => {
-    try {
-      const response = await axios.get(
-        `${SERVER_DOMAIN}/download/${data.UNIQUE_NAME}`,
-        { responseType: "blob" }
-      );
-
-      // Create a Blob from the response data
-      const blob = new Blob([response.data], {
-        type: response.headers["content-type"],
-      });
-
-      // download media
-      downloadMedia(blob, data);
-    } catch (error) {
-      // handle error
-      toast.error(error.message);
-      console.error(`${error?.response?.data || error.message}`);
-    }
-  };
-
   return (
-    <div className={isAuthor === "you" ? "you file__item" : "other file__item"}>
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+    <div
+      className={isAuthor === "you" ? "you media__item" : "other media__item"}
+    >
       <div className="item__author">
         {isAuthor === "you" ? "You" : data.USER_NAME}
       </div>
 
-      <div className="file__content">
-        <div className="item__download" onClick={handleDownload}>
-          <ImArrowDown2 className="download__icon" />
+      <div className="file__content content">
+        <div
+          className="download__icon__wrapper"
+          onClick={() => handleDownloadMedia(data)}
+        >
+          <BsDownload className="download__icon" />
         </div>
         <div>
           <div>{data.CONTENT_NAME}</div>

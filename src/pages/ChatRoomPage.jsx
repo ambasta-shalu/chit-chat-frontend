@@ -6,8 +6,6 @@ import UserDetail from "../components/UserDetail";
 import MessageItem from "../components/MessageItem";
 import FileItem from "../components/FileItem";
 import PictureItem from "../components/PictureItem";
-import VideoItem from "../components/VideoItem";
-import AudioItem from "../components/AudioItem";
 import ShowToast from "../components/ShowToast";
 import InputFileUpload from "../components/InputFileUpload";
 
@@ -15,6 +13,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { socket } from "../socket/ConnectSocket";
+import { getFileSize } from "../helper/GetFileSize";
 import { getTime } from "../helper/GetTime";
 
 import { BiSolidSend } from "react-icons/bi";
@@ -45,7 +44,6 @@ import {
   allowedVideoTypes,
   allowedAudioTypes,
 } from "../utils/AllowedInputTypes";
-import { getFileSize } from "../helper/CalculateFileSize";
 
 function ChatRoomPage() {
   let IS_NEW_ROOM, USER_NAME, USER_ID, ROOM_CODE;
@@ -154,6 +152,7 @@ function ChatRoomPage() {
           USER_ID,
           ROOM_CODE,
           file,
+          "",
           file.name,
           FILE_SIZE,
           TIME
@@ -177,7 +176,34 @@ function ChatRoomPage() {
   const handlePictureChange = (e) => {
     const file = e.target.files[0];
     if (file && allowedPictureTypes.includes(file.type)) {
-      setSelectedPicture(URL.createObjectURL(file));
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        // Convert the picture to base64 data before sending
+        const base64Data = reader.result.split(",")[1];
+        const FILE_SIZE = getFileSize(file.size);
+        const TIME = getTime(new Date());
+
+        // Emit the "PICTURE" event to the server with the picture data
+        socket.emit(
+          "sendMessageEvent",
+          onSendMessageEvent(
+            "PICTURE",
+            USER_NAME,
+            USER_ID,
+            ROOM_CODE,
+            file,
+            base64Data, // Sending the base64 data of the picture
+            file.name,
+            FILE_SIZE,
+            TIME
+          )
+        );
+
+        setSelectedPicture(URL.createObjectURL(file)); // Reset the selected file
+      };
+
+      reader.readAsDataURL(file);
     } else {
       setSelectedPicture(null);
       // Optionally show an error message or provide feedback to the user.
@@ -196,6 +222,25 @@ function ChatRoomPage() {
     const file = e.target.files[0];
     if (file && allowedVideoTypes.includes(file.type)) {
       setSelectedVideo(URL.createObjectURL(file));
+
+      const FILE_SIZE = getFileSize(file.size);
+      const TIME = getTime(new Date());
+
+      socket.emit(
+        "sendMessageEvent",
+        onSendMessageEvent(
+          "VIDEO",
+          USER_NAME,
+          USER_ID,
+          ROOM_CODE,
+          file,
+          "",
+          file.name,
+          FILE_SIZE,
+          TIME
+        )
+      );
+      setSelectedVideo(null); // Reset the selected file
     } else {
       setSelectedVideo(null);
       // Optionally show an error message or provide feedback to the user.
@@ -214,6 +259,25 @@ function ChatRoomPage() {
     const file = e.target.files[0];
     if (file && allowedAudioTypes.includes(file.type)) {
       setSelectedAudio(URL.createObjectURL(file));
+
+      const FILE_SIZE = getFileSize(file.size);
+      const TIME = getTime(new Date());
+
+      socket.emit(
+        "sendMessageEvent",
+        onSendMessageEvent(
+          "AUDIO",
+          USER_NAME,
+          USER_ID,
+          ROOM_CODE,
+          file,
+          "",
+          file.name,
+          FILE_SIZE,
+          TIME
+        )
+      );
+      setSelectedAudio(null); // Reset the selected file
     } else {
       setSelectedAudio(null);
       // Optionally show an error message or provide feedback to the user.
@@ -247,6 +311,7 @@ function ChatRoomPage() {
         USER_ID: USER_ID,
         ROOM_CODE: ROOM_CODE,
         CONTENT: newMessage,
+        CONTENTBASE64: "",
         CONTENT_NAME: "",
         CONTENT_SIZE: "",
         TIME: TIME,
@@ -262,6 +327,7 @@ function ChatRoomPage() {
           USER_ID,
           ROOM_CODE,
           newMessage,
+          "",
           "",
           "",
           TIME
@@ -348,7 +414,7 @@ function ChatRoomPage() {
 
                       case "VIDEO":
                         return (
-                          <VideoItem
+                          <FileItem
                             isAuthor={
                               USER_ID === data.USER_ID ? "you" : "other"
                             }
@@ -358,7 +424,7 @@ function ChatRoomPage() {
 
                       case "AUDIO":
                         return (
-                          <AudioItem
+                          <FileItem
                             isAuthor={
                               USER_ID === data.USER_ID ? "you" : "other"
                             }

@@ -1,10 +1,40 @@
 import React from "react";
 import "../css/PictureItem.css";
+import { handleDownloadMedia } from "../helper/HandleDownloadMedia";
+import { BsDownload } from "react-icons/bs";
 
-function PictureItem() {
+function PictureItem(props) {
+  const { isAuthor, data } = props;
+
   return (
-    <div>
-      <div>PictureItem</div>
+    <div
+      className={isAuthor === "you" ? "you media__item" : "other media__item"}
+    >
+      <div className="item__author">
+        {isAuthor === "you" ? "You" : data.USER_NAME}
+      </div>
+
+      <div className="picture__meta__data">
+        <div
+          className="download__icon__wrapper "
+          onClick={() => handleDownloadMedia(data)}
+        >
+          <BsDownload className="download__icon" />
+        </div>
+
+        <div className="picture__content">
+          <div>
+            <img
+              src={`data:image/jpeg;base64,${data.CONTENTBASE64}`} // Use the base64 data to display the image
+              alt={data.CONTENT_NAME}
+            />
+          </div>
+
+          <div className="file__size">{data.CONTENT_SIZE}</div>
+        </div>
+      </div>
+
+      <div className="item__time">{data.TIME}</div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-.message__item {
+.media__item {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -14,11 +14,11 @@
   align-items: flex-start;
 }
 
-.you > .item__content {
+.you > .content {
   background-color: var(--GREEN_DARK);
 }
 
-.other > .item__content {
+.other > .content {
   background-color: var(--GREEN_LIGHT);
 }
 

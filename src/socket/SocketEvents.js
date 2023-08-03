@@ -34,6 +34,7 @@ export function onSendMessageEvent(
   USER_ID,
   ROOM_CODE,
   CONTENT,
+  CONTENTBASE64,
   CONTENT_NAME,
   CONTENT_SIZE,
   TIME
@@ -44,6 +45,7 @@ export function onSendMessageEvent(
     USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
     CONTENT: CONTENT,
+    CONTENTBASE64: CONTENTBASE64,
     CONTENT_NAME: CONTENT_NAME,
     CONTENT_SIZE: CONTENT_SIZE,
     TIME: TIME,
