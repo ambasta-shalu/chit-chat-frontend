@@ -8,16 +8,11 @@
   --ERROR_COLOR: #ed4337;
   --COLOR_WHITE: rgb(255, 255, 255);
   --COLOR_BLACK: rgb(0, 0, 0);
-  --BODY_BG_IMG: linear-gradient(
-    to left,
-    var(--GREEN_DARK),
-    var(--GREEN_LIGHT)
-  );
-  --COLOR_LIGHT: #e6ebe4;
+  --COLOR_GREY: #b1b8ac;
+  --COLOR_LIGHT: #d3d3d3;
   --COLOR_DARK: #30312b;
-  --GREEN_LIGHT: #a9d3a5;
-  --GREEN_DARK: #9ad068;
-  --GREY: #b1b8ac;
+  --COLOR_PRIMARY: #a9d3a5;
+  --COLOR_PRIMARY_DARK: #9ad068;
 
   /* SHADOW */
   --SHADOW: 0px 5px 10px 0px rgba(0, 0, 0, 0.6);
@@ -29,9 +24,8 @@ html {
 }
 
 body {
-  background-color: var(--COLOR_LIGHT);
-  background-image: var(--BODY_BG_IMG);
-  color: var(--COLOR_DARK);
+  background-color: var(--COLOR_BLACK);
+  color: var(--COLOR_GREY);
 }
 
 /* UTILITY-FUNCTION */

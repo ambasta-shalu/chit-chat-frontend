@@ -7,14 +7,16 @@ function PictureItem(props) {
   const { isAuthor, data } = props;
 
   return (
-    <div
-      className={isAuthor === "you" ? "you media__item" : "other media__item"}
-    >
-      <div className="item__author">
-        {isAuthor === "you" ? "You" : data.USER_NAME}
+    <div className={`media__item ${isAuthor === "you" ? "you" : "other"}`}>
+      <div className="item__meta__data">
+        <div className="item__author">
+          {isAuthor === "you" ? "You" : data.USER_NAME}
+        </div>
+        <div className="item__time">{data.TIME}</div>
+        <div className="file__size">{data.CONTENT_SIZE}</div>
       </div>
 
-      <div className="picture__meta__data">
+      <div className="picture__content">
         <div
           className="download__icon__wrapper "
           onClick={() => handleDownloadMedia(data)}
@@ -22,19 +24,13 @@ function PictureItem(props) {
           <BsDownload className="download__icon" />
         </div>
 
-        <div className="picture__content">
-          <div>
-            <img
-              src={`data:image/jpeg;base64,${data.CONTENTBASE64}`} // Use the base64 data to display the image
-              alt={data.CONTENT_NAME}
-            />
-          </div>
-
-          <div className="file__size">{data.CONTENT_SIZE}</div>
+        <div className="picture">
+          <img
+            src={`data:image/jpeg;base64,${data.CONTENTBASE64}`} // Use the base64 data to display the image
+            alt={data.CONTENT_NAME}
+          />
         </div>
       </div>
-
-      <div className="item__time">{data.TIME}</div>
     </div>
   );
 }

@@ -7,11 +7,12 @@ function FileItem(props) {
   const { isAuthor, data } = props;
 
   return (
-    <div
-      className={isAuthor === "you" ? "you media__item" : "other media__item"}
-    >
-      <div className="item__author">
-        {isAuthor === "you" ? "You" : data.USER_NAME}
+    <div className={`media__item ${isAuthor === "you" ? "you" : "other"}`}>
+      <div className="item__meta__data">
+        <div className="item__author">
+          {isAuthor === "you" ? "You" : data.USER_NAME}
+        </div>
+        <div className="item__time">{data.TIME}</div>
       </div>
 
       <div className="file__content content">
@@ -26,8 +27,6 @@ function FileItem(props) {
           <div className="file__size">{data.CONTENT_SIZE}</div>
         </div>
       </div>
-
-      <div className="item__time">{data.TIME}</div>
     </div>
   );
 }

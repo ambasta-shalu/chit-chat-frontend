@@ -23,7 +23,7 @@
 }
 
 .logo__title {
-  color: var(--COLOR_BLACK);
+  color: var(--COLOR_LIGHT);
   cursor: pointer;
   font-family: "Amatic SC", cursive;
   font-size: 2.5rem;

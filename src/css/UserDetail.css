@@ -23,27 +23,21 @@
   flex-wrap: nowrap;
   align-content: center;
   justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+
+.arrow__icon,
+.user__header > h1 {
+  color: var(--COLOR_WHITE);
+  font-size: 1.8rem;
 }
 
 .arrow__icon {
-  color: var(--COLOR_WHITE);
-  font-size: 2rem;
-}
-
-.arrow__icon:hover {
-  transform: scale(1.2);
-  transition: all 0.5s ease-in-out;
   cursor: pointer;
-}
-
-.user__header > h1 {
-  font-weight: 600;
-  font-size: 1.8rem;
 }
 
 .user__names {
   margin: 0.5rem 0rem;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,8 +52,8 @@
   text-align: center;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: var(--GREY);
-  color: var(--COLOR_BLACK);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--COLOR_GREY);
   display: flex;
   flex-direction: row;
   align-items: center;

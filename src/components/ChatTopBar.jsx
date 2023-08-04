@@ -3,9 +3,12 @@ import "../css/ChatTopBar.css";
 import { useNavigate } from "react-router-dom";
 import copy from "copy-to-clipboard";
 import { toast } from "react-hot-toast";
+import { HiShare } from "react-icons/hi";
+import { RxExit } from "react-icons/rx";
+import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 
 function ChatTopBar(props) {
-  const { ROOM_CODE, typingStatus, isSomeoneTyping } = props;
+  const { ROOM_CODE } = props;
   const navigate = useNavigate();
 
   const handleCopy = () => {
@@ -19,14 +22,21 @@ function ChatTopBar(props) {
 
   return (
     <div className="chat__topbar">
-      <div className="chat__typing">{isSomeoneTyping && typingStatus}</div>
       <div className="chat__btns">
-        <button className="nowrap chat__invite__btn" onClick={handleCopy}>
-          Invite Other
-        </button>
-        <button className="nowrap chat__leave__btn" onClick={handleLeave}>
-          Leave Room
-        </button>
+        <HiShare
+          className="chat__icons"
+          onClick={handleCopy}
+          title="Invite Others"
+        />
+        <RxExit
+          className="chat__icons"
+          onClick={handleLeave}
+          title="Leave Room"
+        />
+        <PiDotsThreeOutlineVerticalFill
+          className="chat__icons"
+          title="More Options"
+        />
       </div>
     </div>
   );

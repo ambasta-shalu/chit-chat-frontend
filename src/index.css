@@ -23,3 +23,7 @@ button,
 textarea {
   font: inherit;
 }
+
+::-webkit-scrollbar {
+  width: 0rem; /* Set the width of the scrollbar to zero */
+}

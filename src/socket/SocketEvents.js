@@ -64,34 +64,28 @@ export function onReceiveRoomUsersEvent(data, setUserList) {
   setUserList(data);
 }
 
-export function onSendStartTypingEvent(USER_NAME, ROOM_CODE) {
+export function onSendStartTypingEvent(USER_NAME, USER_ID, ROOM_CODE) {
   return {
     USER_NAME: USER_NAME,
+    USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
   };
 }
 
-export function onSendStopTypingEvent(USER_NAME, ROOM_CODE) {
+export function onSendStopTypingEvent(USER_NAME, USER_ID, ROOM_CODE) {
   return {
     USER_NAME: USER_NAME,
+    USER_ID: USER_ID,
     ROOM_CODE: ROOM_CODE,
   };
 }
 
-export function onGetStartTypingEvent(
-  name,
-  setTypingStatus,
-  setIsSomeoneTyping
-) {
-  setTypingStatus(`${name} is typing ...`);
+export function onGetStartTypingEvent(data, setTyperId, setIsSomeoneTyping) {
+  setTyperId(data.USER_ID);
   setIsSomeoneTyping(true);
 }
 
-export function onGetStopTypingEvent(
-  name,
-  setTypingStatus,
-  setIsSomeoneTyping
-) {
-  setTypingStatus(`${name} stopped typing ...`);
+export function onGetStopTypingEvent(data, setTyperId, setIsSomeoneTyping) {
+  setTyperId(data.USER_ID);
   setIsSomeoneTyping(false);
 }

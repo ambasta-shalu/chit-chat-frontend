@@ -1,7 +1,6 @@
 .file__content {
   max-width: 20rem;
   padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
   word-wrap: break-word;
   white-space: pre-wrap;
   display: flex;
@@ -11,7 +10,6 @@
 }
 
 .download__icon__wrapper {
-  background-color: var(--COLOR_DARK);
   padding: 0.75rem;
   border-radius: 50%;
   display: flex;
@@ -20,9 +18,20 @@
   cursor: pointer;
 }
 
-.download__icon {
+.you .download__icon__wrapper {
+  background-color: var(--COLOR_DARK);
+}
+
+.other .download__icon__wrapper {
+  background-color: var(--COLOR_LIGHT);
+}
+
+.you .download__icon {
   color: var(--COLOR_LIGHT);
-  font-size: 1.2rem;
+}
+
+.other .download__icon {
+  color: var(--COLOR_DARK);
 }
 
 .file__size {

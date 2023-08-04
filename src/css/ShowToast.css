@@ -3,8 +3,8 @@
   border-radius: 0.5rem;
   margin: 0.5rem auto;
   text-align: center;
-  background-color: var(--GREY);
   font-size: 0.7rem;
-  font-weight: 600;
   letter-spacing: 1px;
+  border: 1px solid var(--COLOR_DARK);
+  color: var(--COLOR_GREY);
 }

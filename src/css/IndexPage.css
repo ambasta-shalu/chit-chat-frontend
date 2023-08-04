@@ -6,7 +6,7 @@
   align-content: center;
   flex-wrap: nowrap;
   gap: 5rem;
-  margin: 5rem 2rem 0rem;
+  margin: 5rem 2rem 1rem;
 }
 
 .index__banner__text {
@@ -21,6 +21,7 @@
 .index__banner__text > h1 {
   font-size: 3rem;
   letter-spacing: 1px;
+  color: var(--COLOR_PRIMARY);
 }
 
 .index__banner__text > h3 {
@@ -28,7 +29,6 @@
   letter-spacing: 1px;
   line-height: 1.5;
   font-weight: 300;
-  color: var(--COLOR_BLACK);
 }
 
 .index__btns {
@@ -49,12 +49,12 @@
 }
 
 .btn__new__chat {
-  background-color: var(--COLOR_DARK);
-  color: var(--COLOR_LIGHT);
+  background-color: var(--COLOR_PRIMARY);
+  color: var(--COLOR_DARK);
 }
 
 .btn__new__chat:hover {
-  background-color: var(--GREY);
+  background-color: var(--COLOR_GREY);
   color: var(--COLOR_BLACK);
 }
 
@@ -64,7 +64,7 @@
 }
 
 .btn__old__chat:hover {
-  background-color: var(--GREY);
+  background-color: var(--COLOR_GREY);
   color: var(--COLOR_BLACK);
 }
 

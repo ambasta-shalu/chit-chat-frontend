@@ -16,7 +16,7 @@ import { socket } from "../socket/ConnectSocket";
 import { getFileSize } from "../helper/GetFileSize";
 import { getTime } from "../helper/GetTime";
 
-import { BiSolidSend } from "react-icons/bi";
+import { BiSolidSend, BiSolidMicrophone } from "react-icons/bi";
 import { LuPaperclip } from "react-icons/lu";
 import { IoMdDocument, IoMdHeadset } from "react-icons/io";
 import { AiFillPicture } from "react-icons/ai";
@@ -66,7 +66,7 @@ function ChatRoomPage() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [userList, setUserList] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  const [typingStatus, setTypingStatus] = useState("");
+  const [typerID, setTyperId] = useState("");
   const [isSomeoneTyping, setIsSomeoneTyping] = useState(false);
   const [isDivVisible, setIsDivVisible] = useState(false);
 
@@ -102,11 +102,11 @@ function ChatRoomPage() {
     socket.on("receiveRoomUsersEvent", (data) =>
       onReceiveRoomUsersEvent(data, setUserList)
     );
-    socket.on("getStartTypingEvent", (name) =>
-      onGetStartTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+    socket.on("getStartTypingEvent", (data) =>
+      onGetStartTypingEvent(data, setTyperId, setIsSomeoneTyping)
     );
-    socket.on("getStopTypingEvent", (name) =>
-      onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+    socket.on("getStopTypingEvent", (data) =>
+      onGetStopTypingEvent(data, setTyperId, setIsSomeoneTyping)
     );
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
@@ -122,11 +122,11 @@ function ChatRoomPage() {
       socket.off("receiveRoomUsersEvent", (data) =>
         onReceiveRoomUsersEvent(data, setUserList)
       );
-      socket.off("getStartTypingEvent", (name) =>
-        onGetStartTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+      socket.off("getStartTypingEvent", (data) =>
+        onGetStartTypingEvent(data, setTyperId, setIsSomeoneTyping)
       );
-      socket.off("getStopTypingEvent", (name) =>
-        onGetStopTypingEvent(name, setTypingStatus, setIsSomeoneTyping)
+      socket.off("getStopTypingEvent", (data) =>
+        onGetStopTypingEvent(data, setTyperId, setIsSomeoneTyping)
       );
       socket.off("disconnect", () => onDisconnectEvent(socket, setIsConnected));
     };
@@ -343,7 +343,7 @@ function ChatRoomPage() {
     if (!isTyping) {
       socket.emit(
         "sendStartTypingEvent",
-        onSendStartTypingEvent(USER_NAME, ROOM_CODE)
+        onSendStartTypingEvent(USER_NAME, USER_ID, ROOM_CODE)
       );
       setIsTyping(true);
     }
@@ -354,7 +354,7 @@ function ChatRoomPage() {
     if (isTyping) {
       socket.emit(
         "sendStopTypingEvent",
-        onSendStopTypingEvent(USER_NAME, ROOM_CODE)
+        onSendStopTypingEvent(USER_NAME, USER_ID, ROOM_CODE)
       );
       setIsTyping(false);
     }
@@ -365,16 +365,17 @@ function ChatRoomPage() {
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
       <div className="chatroom__menu">
-        <UserDetail userList={userList} USER_ID={USER_ID} />
+        <UserDetail
+          userList={userList}
+          USER_ID={USER_ID}
+          typerID={typerID}
+          isSomeoneTyping={isSomeoneTyping}
+        />
       </div>
 
       <div className="chatroom__contents">
         <div>
-          <ChatTopBar
-            ROOM_CODE={ROOM_CODE}
-            typingStatus={typingStatus}
-            isSomeoneTyping={isSomeoneTyping}
-          />
+          <ChatTopBar ROOM_CODE={ROOM_CODE} />
 
           <div className="chatroom__box">
             {messageList.map((data, index) =>
@@ -476,24 +477,28 @@ function ChatRoomPage() {
               </div>
             )}
 
-            <div className="chatroom__clip" onClick={handleClipClick}>
-              <LuPaperclip className="clip__icon" />
+            <div className="chatroom__clip">
+              <LuPaperclip className="clip__icon" onClick={handleClipClick} />
             </div>
           </div>
-          <textarea
-            className="chatroom__textarea"
-            placeholder="Type your message here ..."
-            type="text"
-            autoFocus="Yes"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyDown={handleInputKeyDown}
-            onInput={startTyping}
-            onBlur={stopTyping}
-          />
-          <button className="chatroom__send__btn" onClick={handleSendMessage}>
-            <BiSolidSend />
-          </button>
+
+          <div className="chatroom__textarea__div">
+            <textarea
+              className="chatroom__textarea"
+              placeholder="Type your message here ..."
+              type="text"
+              autoFocus="Yes"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+              onInput={startTyping}
+              onBlur={stopTyping}
+            />
+          </div>
+
+          <div className="chatroom__send">
+            <BiSolidSend className="send__icon" onClick={handleSendMessage} />
+          </div>
 
           <InputFileUpload
             ref={{

@@ -1,15 +1,16 @@
 import React from "react";
 import "../css/UserDetail.css";
-import { BiArrowBack } from "react-icons/bi";
+import { IoIosArrowBack } from "react-icons/io";
 import { FaUserNinja } from "react-icons/fa";
+import { BiMessageSquareDots } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import MAILBOX from "../assets/mailbox.png";
 
 function UserDetail(props) {
-  const { userList, USER_ID } = props;
+  const { userList, USER_ID, typerID, isSomeoneTyping } = props;
   const navigate = useNavigate();
 
-  const handleClick = function () {
+  const handleLeave = function () {
     navigate("/");
   };
 
@@ -17,7 +18,11 @@ function UserDetail(props) {
     <div className="user__detail">
       <div className="user__detail__wrapper">
         <div className="user__header">
-          <BiArrowBack className="arrow__icon" onClick={handleClick} />
+          <IoIosArrowBack
+            className="arrow__icon"
+            title="Leave Room"
+            onClick={handleLeave}
+          />
           <h1 className="nowrap">
             {userList.length > 1
               ? userList.length + " Members"
@@ -29,6 +34,7 @@ function UserDetail(props) {
             <p key={index}>
               {it[1] === USER_ID && <FaUserNinja />}
               {it[0]}
+              {it[1] === typerID && isSomeoneTyping && <BiMessageSquareDots />}
             </p>
           ))}
         </div>

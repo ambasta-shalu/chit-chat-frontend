@@ -1,43 +1,19 @@
-.picture__meta__data {
+.picture__content {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
 }
 
-.you .picture__meta__data {
-  flex-direction: row;
-}
-
-.other .picture__meta__data {
+.other .picture__content {
   flex-direction: row-reverse;
 }
 
-.picture__meta__data > .download__icon__wrapper {
-  padding: 0.5rem;
-}
-
-.picture__meta__data .download__icon {
-  font-size: 1rem;
-}
-
-.picture__content {
+.picture {
   max-width: 20rem;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
-.you .picture__content,
-.other .picture__content {
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.picture__content > .file__size {
-  margin: 0rem 0.5rem 0.5rem;
-}
-
-.other .picture__content .file__size {
-  text-align: end;
+.picture > img {
+  border-radius: 1rem;
 }

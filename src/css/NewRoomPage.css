@@ -2,12 +2,26 @@
   z-index: 1;
 }
 
-.newroom__contents {
+.newroom__wrapper {
   z-index: 5;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
+}
+
+.shape {
+  height: 6rem;
+  width: 6rem;
+  position: absolute;
+  border-radius: 50% 50% 10% 50%;
+  background: rgb(255, 255, 0);
+  right: 0rem;
+  bottom: 0rem;
+}
+
+.newroom__contents {
+  z-index: 10;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
@@ -15,18 +29,19 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem 2rem;
   gap: 1rem;
-  background-color: rgba(230, 235, 228, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(5, 5, 5, 0.6);
 }
 
 .newroom__heading {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: var(--COLOR_DARK);
+  color: var(--COLOR_LIGHT);
   letter-spacing: 2px;
 }
 
@@ -40,16 +55,14 @@
 }
 
 .newroom__form > input {
-  color: var(--COLOR_BLACK);
-  background-color: rgba(230, 235, 228, 0.3);
+  color: var(--COLOR_LIGHT);
+  background-color: rgba(255, 255, 255, 0.07);
   border-radius: 0.2rem;
+  border: none;
   outline: none;
   padding: 0.5rem 1rem;
   width: 20rem;
   text-align: left;
-  border-color: var(--COLOR_LIGHT);
-  border-width: 1px;
-  border-style: solid;
 }
 
 .input__error {
@@ -61,7 +74,7 @@
 .create__room__btn {
   width: 20rem;
   padding: 0.5rem 1rem;
-  background-color: var(--GREEN_LIGHT);
+  background-color: var(--COLOR_PRIMARY);
   color: var(--COLOR_DARK);
   outline: none;
   border: none;
@@ -69,14 +82,10 @@
   cursor: pointer;
   border-radius: 0.25rem;
   letter-spacing: 2px;
-  margin-bottom: 1rem;
 }
 
 .create__room__btn:focus,
 .create__room__btn:hover {
-  background-color: rgba(169, 211, 165, 0.5);
-  color: var(--COLOR_BLACK);
-  border-color: var(--GREEN_DARK);
-  border-width: 1px;
-  border-style: solid;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--COLOR_LIGHT);
 }

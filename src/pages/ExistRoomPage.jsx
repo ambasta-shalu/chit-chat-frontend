@@ -38,41 +38,45 @@ function ExistRoomPage() {
     <div className="exroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Logo />
-      <div className="exroom__contents">
-        <h1 className="exroom__heading">Enter Existing Chat Room </h1>
 
-        <form className="exroom__form" onSubmit={formik.handleSubmit}>
-          <input
-            type="text"
-            placeholder="User Name"
-            id="userName"
-            name="userName"
-            required
-            autoFocus
-            maxLength={20}
-            onChange={formik.handleChange}
-            value={formik.values.userName}
-          />
-          {formik.errors.userName && (
-            <p className="input__error">{formik.errors.userName}</p>
-          )}
-          <input
-            type="text"
-            placeholder="Room Code"
-            id="roomCode"
-            name="roomCode"
-            required
-            autoComplete="off"
-            onChange={formik.handleChange}
-            value={formik.values.roomCode}
-          />
-          {formik.errors.roomCode && (
-            <p className="input__error">{formik.errors.roomCode}</p>
-          )}
-          <button className="join__room__btn" type="submit">
-            Join Room
-          </button>
-        </form>
+      <div className="exroom__wrapper">
+        <div className="shape__two"></div>
+        <div className="exroom__contents">
+          <h1 className="exroom__heading">Enter Existing Chat Room </h1>
+
+          <form className="exroom__form" onSubmit={formik.handleSubmit}>
+            <input
+              type="text"
+              placeholder="User Name"
+              id="userName"
+              name="userName"
+              required
+              autoFocus
+              maxLength={20}
+              onChange={formik.handleChange}
+              value={formik.values.userName}
+            />
+            {formik.errors.userName && (
+              <p className="input__error">{formik.errors.userName}</p>
+            )}
+            <input
+              type="text"
+              placeholder="Room Code"
+              id="roomCode"
+              name="roomCode"
+              required
+              autoComplete="off"
+              onChange={formik.handleChange}
+              value={formik.values.roomCode}
+            />
+            {formik.errors.roomCode && (
+              <p className="input__error">{formik.errors.roomCode}</p>
+            )}
+            <button className="join__room__btn" type="submit">
+              Join Room
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

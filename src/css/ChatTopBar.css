@@ -3,44 +3,20 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  padding: 1.5rem 0rem;
+  border-bottom: 1px solid var(--COLOR_DARK);
+  margin: 0rem 2rem;
 }
 
-.chat__typing {
-  padding: 1rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: rgb(128, 128, 128);
+.chat__btns {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
 }
 
-.chat__btns > button {
-  padding: 0.5rem 0.75rem;
-  border: none;
-  outline: none;
+.chat__icons {
   cursor: pointer;
-  border-radius: 5px;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
-  letter-spacing: 1px;
-}
-
-.chat__invite__btn {
-  margin: 1.5rem 0rem;
-  background-color: var(--COLOR_DARK);
-  color: var(--COLOR_LIGHT);
-}
-
-.chat__invite__btn:hover {
-  background-color: var(--GREY);
-  color: var(--COLOR_BLACK);
-}
-
-.chat__leave__btn {
-  margin: 1.5rem;
-  background-color: var(--COLOR_LIGHT);
-  color: var(--COLOR_DARK);
-}
-
-.chat__leave__btn:hover {
-  background-color: var(--GREY);
-  color: var(--COLOR_BLACK);
+  color: var(--COLOR_GREY);
+  font-size: 1.5rem;
 }
