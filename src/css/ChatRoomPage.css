@@ -33,7 +33,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.1rem;
   margin: 0rem 1rem;
 }
 
@@ -52,6 +51,7 @@
   justify-content: center;
   gap: 0.6rem;
   backdrop-filter: blur(4px);
+  margin-left: 1rem;
 }
 
 .wrapper {
@@ -103,7 +103,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
 }
 
 .chatroom__textarea {

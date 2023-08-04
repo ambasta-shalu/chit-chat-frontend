@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  background-color: var(--COLOR_BLACK);
+  background-color: rgba(0, 0, 0, 0.95);
   color: var(--COLOR_GREY);
 }
 
