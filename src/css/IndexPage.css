@@ -53,6 +53,7 @@
   color: var(--COLOR_DARK);
 }
 
+.btn__new__chat:focus,
 .btn__new__chat:hover {
   background-color: var(--COLOR_GREY);
   color: var(--COLOR_BLACK);
@@ -63,6 +64,7 @@
   color: var(--COLOR_DARK);
 }
 
+.btn__old__chat:focus,
 .btn__old__chat:hover {
   background-color: var(--COLOR_GREY);
   color: var(--COLOR_BLACK);

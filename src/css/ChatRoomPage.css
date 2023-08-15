@@ -50,7 +50,6 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  backdrop-filter: blur(4px);
   margin-left: 1rem;
 }
 

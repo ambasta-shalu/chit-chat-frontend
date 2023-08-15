@@ -142,6 +142,11 @@ function ChatRoomPage() {
       setSelectedFile(file);
 
       const FILE_SIZE = getFileSize(file.size);
+      const sizeDetail = FILE_SIZE.split(" ");
+      if (sizeDetail[1] === "MB" && sizeDetail[0] > 50) {
+        toast.error(`File size is restricted to a maximum of 50 MB.`);
+        return;
+      }
       const TIME = getTime(new Date());
 
       socket.emit(
@@ -182,6 +187,11 @@ function ChatRoomPage() {
         // Convert the picture to base64 data before sending
         const base64Data = reader.result.split(",")[1];
         const FILE_SIZE = getFileSize(file.size);
+        const sizeDetail = FILE_SIZE.split(" ");
+        if (sizeDetail[1] === "MB" && sizeDetail[0] > 20) {
+          toast.error(`Picture size is restricted to a maximum of 20 MB.`);
+          return;
+        }
         const TIME = getTime(new Date());
 
         // Emit the "PICTURE" event to the server with the picture data
@@ -200,7 +210,7 @@ function ChatRoomPage() {
           )
         );
 
-        setSelectedPicture(URL.createObjectURL(file)); // Reset the selected file
+        setSelectedPicture(URL.createObjectURL(file)); // Reset the selected picture
       };
 
       reader.readAsDataURL(file);
@@ -224,6 +234,11 @@ function ChatRoomPage() {
       setSelectedVideo(URL.createObjectURL(file));
 
       const FILE_SIZE = getFileSize(file.size);
+      const sizeDetail = FILE_SIZE.split(" ");
+      if (sizeDetail[1] === "MB" && sizeDetail[0] > 100) {
+        toast.error(`Video size is restricted to a maximum of 100 MB.`);
+        return;
+      }
       const TIME = getTime(new Date());
 
       socket.emit(
@@ -240,7 +255,7 @@ function ChatRoomPage() {
           TIME
         )
       );
-      setSelectedVideo(null); // Reset the selected file
+      setSelectedVideo(null); // Reset the selected video
     } else {
       setSelectedVideo(null);
       // Optionally show an error message or provide feedback to the user.
@@ -261,6 +276,11 @@ function ChatRoomPage() {
       setSelectedAudio(URL.createObjectURL(file));
 
       const FILE_SIZE = getFileSize(file.size);
+      const sizeDetail = FILE_SIZE.split(" ");
+      if (sizeDetail[1] === "MB" && sizeDetail[0] > 50) {
+        toast.error(`Audio size is restricted to a maximum of 50 MB.`);
+        return;
+      }
       const TIME = getTime(new Date());
 
       socket.emit(
@@ -277,7 +297,7 @@ function ChatRoomPage() {
           TIME
         )
       );
-      setSelectedAudio(null); // Reset the selected file
+      setSelectedAudio(null); // Reset the selected audio
     } else {
       setSelectedAudio(null);
       // Optionally show an error message or provide feedback to the user.

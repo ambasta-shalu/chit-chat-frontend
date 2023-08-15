@@ -1,12 +1,10 @@
 import { toast } from "react-hot-toast";
 
 export function onConnectEvent(socket, setIsConnected) {
-  console.log(`a user connected having id ${socket.id}`);
   setIsConnected(true);
 }
 
 export function onDisconnectEvent(socket, setIsConnected) {
-  console.log(`a user disconnected having id ${socket.id}`);
   setIsConnected(false);
 }
 
@@ -34,9 +32,9 @@ export function onSendMessageEvent(
   USER_ID,
   ROOM_CODE,
   CONTENT,
-  CONTENTBASE64,
-  CONTENT_NAME,
-  CONTENT_SIZE,
+  CONTENTBASE64 = "",
+  CONTENT_NAME = "",
+  CONTENT_SIZE = "",
   TIME
 ) {
   return {

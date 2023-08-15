@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/ChatTopBar.css";
 import { useNavigate } from "react-router-dom";
 import copy from "copy-to-clipboard";
@@ -6,10 +6,14 @@ import { toast } from "react-hot-toast";
 import { HiShare } from "react-icons/hi";
 import { RxExit } from "react-icons/rx";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+import { IoIosCall } from "react-icons/io";
+import { FaVideo } from "react-icons/fa";
 
 function ChatTopBar(props) {
   const { ROOM_CODE } = props;
+
   const navigate = useNavigate();
+  const [isDivVisible, setIsDivVisible] = useState(false);
 
   const handleCopy = () => {
     copy(`${ROOM_CODE}`);
@@ -20,23 +24,58 @@ function ChatTopBar(props) {
     navigate("/");
   };
 
+  const handleOptionsClick = function () {
+    // toggle topbar__float__menu div visibility
+    setIsDivVisible((prevVisibility) => !prevVisibility);
+  };
+
+  const handleVoiceCall = function () {
+    toast.error(`Voice call feature is in development mode. 😬`);
+  };
+
+  const handleVideoCall = function () {
+    toast.error(`Video call feature is in development mode. 😬`);
+  };
+
   return (
     <div className="chat__topbar">
-      <div className="chat__btns">
-        <HiShare
-          className="chat__icons"
-          onClick={handleCopy}
-          title="Invite Others"
-        />
-        <RxExit
-          className="chat__icons"
-          onClick={handleLeave}
-          title="Leave Room"
-        />
-        <PiDotsThreeOutlineVerticalFill
-          className="chat__icons"
-          title="More Options"
-        />
+      <div className="topbar__btns">
+        <div>
+          <HiShare
+            className="topbar__icons"
+            onClick={handleCopy}
+            title="Invite Others"
+          />
+        </div>
+
+        <div>
+          <RxExit
+            className="topbar__icons"
+            onClick={handleLeave}
+            title="Leave Room"
+          />
+        </div>
+
+        <div className="topbar__attachment__menu">
+          <PiDotsThreeOutlineVerticalFill
+            className="topbar__icons"
+            title="More Options"
+            onClick={handleOptionsClick}
+          />
+
+          {isDivVisible && (
+            <div className="topbar__float__menu">
+              <p className="nowrap voice__call" onClick={handleVoiceCall}>
+                <IoIosCall className="call__icon" />
+                Voice Call
+              </p>
+
+              <p className="nowrap video__call" onClick={handleVideoCall}>
+                <FaVideo className="call__icon" /> Video Call
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
