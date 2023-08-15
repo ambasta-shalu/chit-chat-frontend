@@ -30,10 +30,10 @@ function IndexPage() {
             to people <br /> you want to chat with.
           </h3>
           <div className="index__btns">
-            <button className="btn__new__chat" onClick={handleNewRoom}>
+            <button className="btn__new__chat nowrap" onClick={handleNewRoom}>
               New Chat Room
             </button>
-            <button className="btn__old__chat" onClick={handleExistRoom}>
+            <button className="btn__old__chat nowrap" onClick={handleExistRoom}>
               Join Chat Room
             </button>
           </div>
