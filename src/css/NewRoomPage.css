@@ -35,7 +35,6 @@
   background-color: rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(30px);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(5, 5, 5, 0.6);
 }
 
 .newroom__heading {
@@ -88,4 +87,95 @@
 .create__room__btn:hover {
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--COLOR_LIGHT);
+}
+
+@media (max-width: 776px) {
+  .newroom__heading {
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 550px) {
+  .newroom__contents {
+    max-width: 25rem;
+  }
+
+  .newroom__heading {
+    font-size: 1.5rem;
+  }
+
+  .newroom__form > input {
+    width: 18rem;
+  }
+
+  .input__error {
+    letter-spacing: normal;
+  }
+
+  .create__room__btn {
+    width: 18rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 460px) {
+  .newroom__contents {
+    max-width: 20rem;
+  }
+
+  .newroom__heading {
+    letter-spacing: normal;
+  }
+
+  .newroom__form {
+    gap: 0.75rem;
+  }
+
+  .newroom__form > input {
+    width: 16rem;
+  }
+
+  .input__error {
+    font-size: 0.8rem;
+    font-weight: 100;
+  }
+
+  .create__room__btn {
+    width: 16rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .shape {
+    display: none;
+  }
+
+  .newroom__contents {
+    max-width: 16rem;
+    padding: 1rem;
+    gap: 0.75rem;
+    backdrop-filter: none;
+  }
+
+  .newroom__heading {
+    letter-spacing: normal;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newroom__form {
+    gap: 0.75rem;
+  }
+
+  .newroom__form > input {
+    width: 14rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.9rem;
+  }
+
+  .create__room__btn {
+    width: 14rem;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.9rem;
+  }
 }
