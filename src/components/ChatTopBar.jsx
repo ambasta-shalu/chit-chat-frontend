@@ -31,10 +31,12 @@ function ChatTopBar(props) {
 
   const handleVoiceCall = function () {
     toast.error(`Voice call feature is in development mode. 😬`);
+    setIsDivVisible(false);
   };
 
   const handleVideoCall = function () {
     toast.error(`Video call feature is in development mode. 😬`);
+    setIsDivVisible(false);
   };
 
   return (
