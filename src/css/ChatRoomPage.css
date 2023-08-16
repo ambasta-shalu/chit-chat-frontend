@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 30rem;
+  height: 29.8rem;
   margin: 0.5rem 0rem;
 }
 
@@ -128,4 +128,53 @@
 .send__icon {
   cursor: pointer;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+/* Media Query Breakpoints */
+
+@media (max-width: 1100px) {
+  .chatroom__float__menu {
+    margin-left: 0rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .chatroom__menu {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .chatroom__input {
+    bottom: 0.5rem;
+    margin: 0rem 0.7rem;
+  }
+
+  .wrapper {
+    padding: 0.5rem;
+    filter: none;
+  }
+
+  .icon {
+    font-size: 1.4rem;
+    color: var(--COLOR_DARK);
+  }
+
+  .chatroom__clip {
+    font-size: 1.6rem;
+  }
+
+  .chatroom__send {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .chatroom__input {
+    gap: 0.25rem;
+  }
+
+  .chatroom__textarea {
+    padding: 0.35rem;
+  }
 }

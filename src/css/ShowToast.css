@@ -8,3 +8,13 @@
   border: 1px solid var(--COLOR_DARK);
   color: var(--COLOR_GREY);
 }
+
+/* Media Query Breakpoints */
+
+@media (max-width: 700px) {
+  .show__toast {
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.8rem;
+    font-size: 0.6rem;
+  }
+}

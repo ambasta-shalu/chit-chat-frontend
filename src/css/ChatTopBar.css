@@ -63,3 +63,26 @@
   background-color: var(--COLOR_GREY);
   color: var(--COLOR_DARK);
 }
+
+/* Media Query Breakpoints */
+
+@media (max-width: 700px) {
+  .chat__topbar {
+    padding: 1.2rem 0rem;
+    margin: 0rem 1.25rem;
+  }
+
+  .topbar__float__menu {
+    top: 2rem;
+  }
+
+  .topbar__float__menu > p {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .voice__call,
+  .video__call {
+    gap: 0.5rem;
+  }
+}

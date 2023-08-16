@@ -89,19 +89,18 @@
   color: var(--COLOR_LIGHT);
 }
 
+/* Media Query Breakpoints */
+
 @media (max-width: 776px) {
+  .newroom__contents {
+    max-width: 28rem;
+    padding: 0rem 1.5rem 1rem;
+    gap: 0.8rem;
+    backdrop-filter: blur(25px);
+  }
   .newroom__heading {
     letter-spacing: 1px;
-  }
-}
-
-@media (max-width: 550px) {
-  .newroom__contents {
-    max-width: 25rem;
-  }
-
-  .newroom__heading {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   .newroom__form > input {
@@ -109,58 +108,29 @@
   }
 
   .input__error {
-    letter-spacing: normal;
-  }
-
-  .create__room__btn {
-    width: 18rem;
-    letter-spacing: 1px;
-  }
-}
-
-@media (max-width: 460px) {
-  .newroom__contents {
-    max-width: 20rem;
-  }
-
-  .newroom__heading {
-    letter-spacing: normal;
-  }
-
-  .newroom__form {
-    gap: 0.75rem;
-  }
-
-  .newroom__form > input {
-    width: 16rem;
-  }
-
-  .input__error {
+    font-weight: 200;
     font-size: 0.8rem;
-    font-weight: 100;
+    text-align: center;
   }
 
   .create__room__btn {
-    width: 16rem;
+    width: 18rem;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 450px) {
   .shape {
     display: none;
   }
 
   .newroom__contents {
-    max-width: 16rem;
-    padding: 1rem;
-    gap: 0.75rem;
+    max-width: 20rem;
     backdrop-filter: none;
   }
 
   .newroom__heading {
     letter-spacing: normal;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.45rem;
   }
 
   .newroom__form {
@@ -168,14 +138,42 @@
   }
 
   .newroom__form > input {
-    width: 14rem;
-    padding: 0.5rem 0.65rem;
-    font-size: 0.9rem;
+    width: 15rem;
+  }
+
+  .input__error {
+    font-weight: 100;
   }
 
   .create__room__btn {
-    width: 14rem;
-    padding: 0.5rem 0.65rem;
-    font-size: 0.9rem;
+    width: 15rem;
+    letter-spacing: normal;
+  }
+}
+
+@media (max-width: 350px) {
+  .newroom__contents {
+    max-width: 16rem;
+  }
+
+  .newroom__heading {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newroom__form {
+    gap: 0.5rem;
+  }
+
+  .newroom__form > input {
+    width: 13rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .create__room__btn {
+    width: 13rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.95rem;
   }
 }

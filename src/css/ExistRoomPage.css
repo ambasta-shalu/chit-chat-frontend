@@ -24,7 +24,6 @@
   gap: 1rem;
   background-color: rgba(255, 255, 255, 0.13);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 40px rgba(5, 5, 5, 0.6);
 }
 
 .exroom__heading {
@@ -71,4 +70,104 @@
 .join__room__btn:hover {
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--COLOR_LIGHT);
+}
+
+/* Media Query Breakpoints */
+
+@media (max-width: 845px) {
+  .exroom__contents {
+    max-width: 28rem;
+    gap: 0.8rem;
+  }
+
+  .exroom__heading {
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    font-size: 1.8rem;
+  }
+
+  .exroom__form > input {
+    width: 18rem;
+  }
+
+  .input__error {
+    font-weight: 200;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .join__room__btn {
+    width: 18rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 736px) {
+  .exroom__contents {
+    max-width: 24rem;
+    gap: 0rem;
+  }
+
+  .exroom__heading {
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+  }
+
+  .exroom__form > input {
+    width: 14rem;
+  }
+
+  .input__error {
+    font-weight: 100;
+    font-size: 0.8rem;
+  }
+
+  .join__room__btn {
+    width: 14rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 613px) {
+  .exroom__contents {
+    max-width: 20rem;
+  }
+
+  .exroom__heading {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: normal;
+    font-size: 1.25rem;
+  }
+
+  .exroom__form > input {
+    width: 13rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .input__error {
+    font-weight: 100;
+    font-size: 0.8rem;
+  }
+
+  .join__room__btn {
+    width: 13rem;
+    font-size: 0.9rem;
+    letter-spacing: normal;
+    padding: 0.3rem 0.75rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .exroom__contents {
+    max-width: 16rem;
+  }
+
+  .exroom__heading {
+    margin-top: 0rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: normal;
+    font-size: 1.2rem;
+    text-align: center;
+  }
 }

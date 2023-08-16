@@ -38,3 +38,30 @@
   font-size: 0.7rem;
   letter-spacing: 1px;
 }
+
+/* Media Query Breakpoints */
+
+@media (max-width: 700px) {
+  .file__content {
+    max-width: 18rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+  }
+
+  .download__icon__wrapper {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .file__content {
+    max-width: 15rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .file__content {
+    max-width: 13rem;
+  }
+}

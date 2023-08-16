@@ -17,3 +17,21 @@
 .picture > img {
   border-radius: 1rem;
 }
+
+/* Media Query Breakpoints */
+
+@media (max-width: 700px) {
+  .picture__content {
+    gap: 0.5rem;
+  }
+
+  .picture {
+    max-width: 15rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .picture {
+    max-width: 12rem;
+  }
+}

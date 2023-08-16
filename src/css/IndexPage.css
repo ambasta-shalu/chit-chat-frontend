@@ -162,4 +162,8 @@
   .index__contents {
     margin: 3rem 2rem 1rem;
   }
+
+  .index__btns > button {
+    letter-spacing: 1px;
+  }
 }
