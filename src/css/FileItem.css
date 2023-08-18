@@ -19,7 +19,8 @@
 }
 
 .you .download__icon__wrapper {
-  background-color: var(--COLOR_DARK);
+  /* background-color: var(--COLOR_DARK); */
+  display: none;
 }
 
 .other .download__icon__wrapper {

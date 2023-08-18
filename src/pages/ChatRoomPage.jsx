@@ -149,6 +149,20 @@ function ChatRoomPage() {
       }
       const TIME = getTime(new Date());
 
+      const data = {
+        TYPE: "FILE",
+        USER_NAME: USER_NAME,
+        USER_ID: USER_ID,
+        ROOM_CODE: ROOM_CODE,
+        CONTENT: file,
+        CONTENTBASE64: "",
+        CONTENT_NAME: file.name,
+        CONTENT_SIZE: FILE_SIZE,
+        TIME: TIME,
+      };
+
+      setMessageList((prevData) => [...prevData, data]);
+
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
@@ -193,6 +207,20 @@ function ChatRoomPage() {
           return;
         }
         const TIME = getTime(new Date());
+
+        const data = {
+          TYPE: "PICTURE",
+          USER_NAME: USER_NAME,
+          USER_ID: USER_ID,
+          ROOM_CODE: ROOM_CODE,
+          CONTENT: file,
+          CONTENTBASE64: base64Data,
+          CONTENT_NAME: file.name,
+          CONTENT_SIZE: FILE_SIZE,
+          TIME: TIME,
+        };
+
+        setMessageList((prevData) => [...prevData, data]);
 
         // Emit the "PICTURE" event to the server with the picture data
         socket.emit(
@@ -241,6 +269,20 @@ function ChatRoomPage() {
       }
       const TIME = getTime(new Date());
 
+      const data = {
+        TYPE: "VIDEO",
+        USER_NAME: USER_NAME,
+        USER_ID: USER_ID,
+        ROOM_CODE: ROOM_CODE,
+        CONTENT: file,
+        CONTENTBASE64: "",
+        CONTENT_NAME: file.name,
+        CONTENT_SIZE: FILE_SIZE,
+        TIME: TIME,
+      };
+
+      setMessageList((prevData) => [...prevData, data]);
+
       socket.emit(
         "sendMessageEvent",
         onSendMessageEvent(
@@ -282,6 +324,20 @@ function ChatRoomPage() {
         return;
       }
       const TIME = getTime(new Date());
+
+      const data = {
+        TYPE: "AUDIO",
+        USER_NAME: USER_NAME,
+        USER_ID: USER_ID,
+        ROOM_CODE: ROOM_CODE,
+        CONTENT: file,
+        CONTENTBASE64: "",
+        CONTENT_NAME: file.name,
+        CONTENT_SIZE: FILE_SIZE,
+        TIME: TIME,
+      };
+
+      setMessageList((prevData) => [...prevData, data]);
 
       socket.emit(
         "sendMessageEvent",

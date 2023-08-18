@@ -20,7 +20,12 @@ export async function handleDownloadMedia(data) {
   try {
     const response = await axios.get(
       `${SERVER_DOMAIN}/download/${data.UNIQUE_NAME}`,
-      { responseType: "blob" }
+      {
+        responseType: "blob",
+        params: {
+          ROOM_CODE: data.ROOM_CODE,
+        },
+      }
     );
 
     // Create a Blob from the response data
