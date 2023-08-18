@@ -183,8 +183,6 @@ function ChatRoomPage() {
         )
       );
 
-      setIsMediaSending(false); // Set sending status back to false
-
       setSelectedFile(null); // Reset the selected file
     } else {
       setSelectedFile(null);
@@ -193,6 +191,8 @@ function ChatRoomPage() {
         `Invalid file type. Please select a .doc, .docx, .xml, .txt, or .pdf file. 😑`
       );
     }
+
+    setIsMediaSending(false); // Set sending status back to false
     setIsDivVisible(false);
   };
 
@@ -248,8 +248,6 @@ function ChatRoomPage() {
           )
         );
 
-        setIsMediaSending(false); // Set sending status back to false
-
         setSelectedPicture(URL.createObjectURL(file)); // Reset the selected picture
       };
 
@@ -261,6 +259,8 @@ function ChatRoomPage() {
         `Invalid file type. Please select an image (JPEG, PNG, SVG) or GIF file. 😑`
       );
     }
+
+    setIsMediaSending(false); // Set sending status back to false
     setIsDivVisible(false);
   };
 
@@ -312,8 +312,6 @@ function ChatRoomPage() {
         )
       );
 
-      setIsMediaSending(false); // Set sending status back to false
-
       setSelectedVideo(null); // Reset the selected video
     } else {
       setSelectedVideo(null);
@@ -322,6 +320,8 @@ function ChatRoomPage() {
         `Invalid file type. Please select a video (MP4, WebM, Ogg) file. 😑`
       );
     }
+
+    setIsMediaSending(false); // Set sending status back to false
     setIsDivVisible(false);
   };
 
@@ -373,8 +373,6 @@ function ChatRoomPage() {
         )
       );
 
-      setIsMediaSending(false); // Set sending status back to false
-
       setSelectedAudio(null); // Reset the selected audio
     } else {
       setSelectedAudio(null);
@@ -383,6 +381,8 @@ function ChatRoomPage() {
         `Invalid file type. Please select an audio file (MP3, Ogg, WAV, WebM) file. 😑`
       );
     }
+
+    setIsMediaSending(false); // Set sending status back to false
     setIsDivVisible(false);
   };
 
