@@ -1,3 +1,10 @@
+.index__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .index__contents {
   display: flex;
   flex-direction: row;
@@ -6,7 +13,7 @@
   align-content: center;
   flex-wrap: nowrap;
   gap: 5rem;
-  margin: 5rem 0rem 1rem 2rem;
+  margin: 5rem 0rem 5rem 2rem;
 }
 
 .index__banner__text {
@@ -93,7 +100,7 @@
 @media (max-width: 885px) {
   .index__contents {
     gap: 4rem;
-    margin: 4rem 0rem 1rem 2rem;
+    margin: 3rem 0rem 3rem 2rem;
   }
 
   .index__banner__text > h1 {
@@ -104,7 +111,7 @@
 @media (max-width: 856px) {
   .index__contents {
     gap: 2rem;
-    margin: 3rem 0rem 1rem 2rem;
+    margin: 2rem 0rem 2rem 2rem;
   }
 
   .index__banner__text > h1 {
@@ -160,7 +167,7 @@
 
 @media (max-width: 323px) {
   .index__contents {
-    margin: 3rem 2rem 1rem;
+    margin: 3rem 2rem 3rem;
   }
 
   .index__btns > button {
