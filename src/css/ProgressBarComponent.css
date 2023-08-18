@@ -1,0 +1,22 @@
+.progress__bar__component {
+  z-index: 30;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: transparent;
+  color: var(--COLOR_PRIMARY_DARK);
+}
+
+/* Media Query Breakpoints */
+
+@media (max-width: 700px) {
+  .progress__bar__component {
+    font-size: 0.8rem;
+  }
+}

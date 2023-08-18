@@ -8,6 +8,7 @@ import FileItem from "../components/FileItem";
 import PictureItem from "../components/PictureItem";
 import ShowToast from "../components/ShowToast";
 import InputFileUpload from "../components/InputFileUpload";
+import ProgressBarComponent from "../components/ProgressBarComponent";
 
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -81,6 +82,8 @@ function ChatRoomPage() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedAudio, setSelectedAudio] = useState(null);
 
+  const [isMediaSending, setIsMediaSending] = useState(false);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behaviour: "smooth" });
@@ -137,6 +140,8 @@ function ChatRoomPage() {
   };
 
   const handleFileChange = (e) => {
+    setIsMediaSending(true); // Set sending status to true
+
     const file = e.target.files[0];
     if (file && allowedFileTypes.includes(file.type)) {
       setSelectedFile(file);
@@ -177,6 +182,9 @@ function ChatRoomPage() {
           TIME
         )
       );
+
+      setIsMediaSending(false); // Set sending status back to false
+
       setSelectedFile(null); // Reset the selected file
     } else {
       setSelectedFile(null);
@@ -193,6 +201,8 @@ function ChatRoomPage() {
   };
 
   const handlePictureChange = (e) => {
+    setIsMediaSending(true); // Set sending status to true
+
     const file = e.target.files[0];
     if (file && allowedPictureTypes.includes(file.type)) {
       const reader = new FileReader();
@@ -238,6 +248,8 @@ function ChatRoomPage() {
           )
         );
 
+        setIsMediaSending(false); // Set sending status back to false
+
         setSelectedPicture(URL.createObjectURL(file)); // Reset the selected picture
       };
 
@@ -257,6 +269,8 @@ function ChatRoomPage() {
   };
 
   const handleVideoChange = (e) => {
+    setIsMediaSending(true); // Set sending status to true
+
     const file = e.target.files[0];
     if (file && allowedVideoTypes.includes(file.type)) {
       setSelectedVideo(URL.createObjectURL(file));
@@ -297,6 +311,9 @@ function ChatRoomPage() {
           TIME
         )
       );
+
+      setIsMediaSending(false); // Set sending status back to false
+
       setSelectedVideo(null); // Reset the selected video
     } else {
       setSelectedVideo(null);
@@ -313,6 +330,8 @@ function ChatRoomPage() {
   };
 
   const handleAudioChange = (e) => {
+    setIsMediaSending(true); // Set sending status to true
+
     const file = e.target.files[0];
     if (file && allowedAudioTypes.includes(file.type)) {
       setSelectedAudio(URL.createObjectURL(file));
@@ -353,6 +372,9 @@ function ChatRoomPage() {
           TIME
         )
       );
+
+      setIsMediaSending(false); // Set sending status back to false
+
       setSelectedAudio(null); // Reset the selected audio
     } else {
       setSelectedAudio(null);
@@ -454,6 +476,9 @@ function ChatRoomPage() {
           <ChatTopBar ROOM_CODE={ROOM_CODE} />
 
           <div className="chatroom__box">
+            {/* Render progress bar when sending media */}
+            {isMediaSending && <ProgressBarComponent />}
+
             {messageList.map((data, index) =>
               typeof data === "object" ? (
                 <div key={index} ref={scrollRef}>

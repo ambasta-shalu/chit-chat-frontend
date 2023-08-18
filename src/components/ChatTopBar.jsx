@@ -46,7 +46,7 @@ function ChatTopBar(props) {
           <HiShare
             className="topbar__icons"
             onClick={handleCopy}
-            title="Invite Others"
+            title="Share Room Code"
           />
         </div>
 
