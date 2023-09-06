@@ -40,7 +40,7 @@
   letter-spacing: 1px;
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 700px) {
   .file__content {

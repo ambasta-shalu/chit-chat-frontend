@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-// Wrap the component using forwardRef
+// WRAP THE COMPONENT USING FORWARDREF
 const InputFileUpload = forwardRef((props, ref) => {
   const {
     handleFileChange,
@@ -16,7 +16,7 @@ const InputFileUpload = forwardRef((props, ref) => {
       <input
         type="file"
         accept=".doc,.docx,.xml,.txt,.pdf"
-        ref={fileInputRef} // Use the forwarded ref
+        ref={fileInputRef} // USE THE FORWARDED REF
         style={{ display: "none" }}
         onChange={handleFileChange}
       />
@@ -24,7 +24,7 @@ const InputFileUpload = forwardRef((props, ref) => {
       <input
         type="file"
         accept="image/*,.gif"
-        ref={pictureInputRef} // Use the forwarded ref
+        ref={pictureInputRef} // USE THE FORWARDED REF
         style={{ display: "none" }}
         onChange={handlePictureChange}
       />
@@ -32,7 +32,7 @@ const InputFileUpload = forwardRef((props, ref) => {
       <input
         type="file"
         accept="video/mp4,video/webm,video/ogg"
-        ref={videoInputRef} // Use the forwarded ref
+        ref={videoInputRef} // USE THE FORWARDED REF
         style={{ display: "none" }}
         onChange={handleVideoChange}
       />
@@ -40,7 +40,7 @@ const InputFileUpload = forwardRef((props, ref) => {
       <input
         type="file"
         accept="audio/mpeg,audio/ogg,audio/wav,audio/webm"
-        ref={audioInputRef} // Use the forwarded ref
+        ref={audioInputRef} // USE THE FORWARDED REF
         style={{ display: "none" }}
         onChange={handleAudioChange}
       />

@@ -18,7 +18,7 @@
   border-radius: 1rem;
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 700px) {
   .picture__content {

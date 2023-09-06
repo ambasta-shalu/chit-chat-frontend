@@ -114,7 +114,7 @@ function ChatRoomPage() {
     socket.on("disconnect", () => onDisconnectEvent(socket, setIsConnected));
 
     return () => {
-      // Clean up event listeners when the component unmounts
+      // CLEAN UP EVENT LISTENERS WHEN THE COMPONENT UNMOUNTS
 
       socket.off("connect", () => onConnectEvent(socket, setIsConnected));
       socket.off("toastEvent", (msg) => onToastEvent(msg, setMessageList));
@@ -140,7 +140,7 @@ function ChatRoomPage() {
   };
 
   const handleFileChange = (e) => {
-    setIsMediaSending(true); // Set sending status to true
+    setIsMediaSending(true); // SET SENDING STATUS TO TRUE
 
     const file = e.target.files[0];
     if (file && allowedFileTypes.includes(file.type)) {
@@ -183,16 +183,16 @@ function ChatRoomPage() {
         )
       );
 
-      setSelectedFile(null); // Reset the selected file
+      setSelectedFile(null); // RESET THE SELECTED FILE
     } else {
       setSelectedFile(null);
-      // Optionally show an error message or provide feedback to the user.
+      // OPTIONALLY SHOW AN ERROR MESSAGE OR PROVIDE FEEDBACK TO THE USER.
       toast.error(
         `Invalid file type. Please select a .doc, .docx, .xml, .txt, or .pdf file. 😑`
       );
     }
 
-    setIsMediaSending(false); // Set sending status back to false
+    setIsMediaSending(false); // SET SENDING STATUS BACK TO FALSE
     setIsDivVisible(false);
   };
 
@@ -201,14 +201,14 @@ function ChatRoomPage() {
   };
 
   const handlePictureChange = (e) => {
-    setIsMediaSending(true); // Set sending status to true
+    setIsMediaSending(true); // SET SENDING STATUS TO TRUE
 
     const file = e.target.files[0];
     if (file && allowedPictureTypes.includes(file.type)) {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        // Convert the picture to base64 data before sending
+        // CONVERT THE PICTURE TO BASE64 DATA BEFORE SENDING
         const base64Data = reader.result.split(",")[1];
         const FILE_SIZE = getFileSize(file.size);
         const sizeDetail = FILE_SIZE.split(" ");
@@ -232,7 +232,7 @@ function ChatRoomPage() {
 
         setMessageList((prevData) => [...prevData, data]);
 
-        // Emit the "PICTURE" event to the server with the picture data
+        // EMIT THE "PICTURE" EVENT TO THE SERVER WITH THE PICTURE DATA
         socket.emit(
           "sendMessageEvent",
           onSendMessageEvent(
@@ -241,26 +241,26 @@ function ChatRoomPage() {
             USER_ID,
             ROOM_CODE,
             file,
-            base64Data, // Sending the base64 data of the picture
+            base64Data, // SENDING THE BASE64 DATA OF THE PICTURE
             file.name,
             FILE_SIZE,
             TIME
           )
         );
 
-        setSelectedPicture(URL.createObjectURL(file)); // Reset the selected picture
+        setSelectedPicture(URL.createObjectURL(file)); // RESET THE SELECTED PICTURE
       };
 
       reader.readAsDataURL(file);
     } else {
       setSelectedPicture(null);
-      // Optionally show an error message or provide feedback to the user.
+      // OPTIONALLY SHOW AN ERROR MESSAGE OR PROVIDE FEEDBACK TO THE USER.
       toast.error(
         `Invalid file type. Please select an image (JPEG, PNG, SVG) or GIF file. 😑`
       );
     }
 
-    setIsMediaSending(false); // Set sending status back to false
+    setIsMediaSending(false); // SET SENDING STATUS BACK TO FALSE
     setIsDivVisible(false);
   };
 
@@ -269,7 +269,7 @@ function ChatRoomPage() {
   };
 
   const handleVideoChange = (e) => {
-    setIsMediaSending(true); // Set sending status to true
+    setIsMediaSending(true); // SET SENDING STATUS TO TRUE
 
     const file = e.target.files[0];
     if (file && allowedVideoTypes.includes(file.type)) {
@@ -312,16 +312,16 @@ function ChatRoomPage() {
         )
       );
 
-      setSelectedVideo(null); // Reset the selected video
+      setSelectedVideo(null); // RESET THE SELECTED VIDEO
     } else {
       setSelectedVideo(null);
-      // Optionally show an error message or provide feedback to the user.
+      // OPTIONALLY SHOW AN ERROR MESSAGE OR PROVIDE FEEDBACK TO THE USER.
       toast.error(
         `Invalid file type. Please select a video (MP4, WebM, Ogg) file. 😑`
       );
     }
 
-    setIsMediaSending(false); // Set sending status back to false
+    setIsMediaSending(false); // SET SENDING STATUS BACK TO FALSE
     setIsDivVisible(false);
   };
 
@@ -330,7 +330,7 @@ function ChatRoomPage() {
   };
 
   const handleAudioChange = (e) => {
-    setIsMediaSending(true); // Set sending status to true
+    setIsMediaSending(true); // SET SENDING STATUS TO TRUE
 
     const file = e.target.files[0];
     if (file && allowedAudioTypes.includes(file.type)) {
@@ -373,21 +373,21 @@ function ChatRoomPage() {
         )
       );
 
-      setSelectedAudio(null); // Reset the selected audio
+      setSelectedAudio(null); // RESET THE SELECTED AUDIO
     } else {
       setSelectedAudio(null);
-      // Optionally show an error message or provide feedback to the user.
+      // OPTIONALLY SHOW AN ERROR MESSAGE OR PROVIDE FEEDBACK TO THE USER.
       toast.error(
         `Invalid file type. Please select an audio file (MP3, Ogg, WAV, WebM) file. 😑`
       );
     }
 
-    setIsMediaSending(false); // Set sending status back to false
+    setIsMediaSending(false); // SET SENDING STATUS BACK TO FALSE
     setIsDivVisible(false);
   };
 
   const handleClipClick = function () {
-    // toggle chatroom__float__menu div visibility
+    // TOGGLE CHATROOM__FLOAT__MENU DIV VISIBILITY
     setIsDivVisible((prevVisibility) => !prevVisibility);
   };
 
@@ -436,7 +436,7 @@ function ChatRoomPage() {
     }
   };
 
-  // Function to emit startTyping event
+  // FUNCTION TO EMIT STARTTYPING EVENT
   const startTyping = () => {
     if (!isTyping) {
       socket.emit(
@@ -447,7 +447,7 @@ function ChatRoomPage() {
     }
   };
 
-  // Function to emit stopTyping event
+  // FUNCTION TO EMIT STOPTYPING EVENT
   const stopTyping = () => {
     if (isTyping) {
       socket.emit(
@@ -476,7 +476,7 @@ function ChatRoomPage() {
           <ChatTopBar ROOM_CODE={ROOM_CODE} />
 
           <div className="chatroom__box">
-            {/* Render progress bar when sending media */}
+            {/* RENDER PROGRESS BAR WHEN SENDING MEDIA */}
             {isMediaSending && <ProgressBarComponent />}
 
             {messageList.map((data, index) =>

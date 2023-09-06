@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 620px) {
   .footer__content {

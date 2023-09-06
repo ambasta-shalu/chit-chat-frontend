@@ -13,7 +13,7 @@
   color: var(--COLOR_PRIMARY_DARK);
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 700px) {
   .progress__bar__component {

@@ -2,7 +2,7 @@ import axios from "axios";
 import { SERVER_DOMAIN } from "../utils/Constants";
 import { toast } from "react-hot-toast";
 
-// Create a download link to save media to device
+// CREATE A DOWNLOAD LINK TO SAVE MEDIA TO DEVICE
 function saveMediaToDevice(blob, data) {
   const link = document.createElement("a");
   const url = URL.createObjectURL(blob);
@@ -15,7 +15,7 @@ function saveMediaToDevice(blob, data) {
 
 // ****************************************************************************************************************
 
-// Make an Axios GET request to download the file
+// MAKE AN AXIOS GET REQUEST TO DOWNLOAD THE FILE
 export async function handleDownloadMedia(data) {
   try {
     const response = await axios.get(
@@ -28,15 +28,15 @@ export async function handleDownloadMedia(data) {
       }
     );
 
-    // Create a Blob from the response data
+    // CREATE A BLOB FROM THE RESPONSE DATA
     const blob = new Blob([response.data], {
       type: response.headers["content-type"],
     });
 
-    // save media
+    // SAVE MEDIA
     saveMediaToDevice(blob, data);
   } catch (error) {
-    // handle error
+    // HANDLE ERROR
     toast.error(error.message);
     console.error(`${error?.response?.data || error.message}`);
   }

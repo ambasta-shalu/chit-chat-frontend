@@ -57,7 +57,7 @@
   border-radius: 0rem 0.75rem 0.75rem 0.75rem;
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 700px) {
   .item__author {

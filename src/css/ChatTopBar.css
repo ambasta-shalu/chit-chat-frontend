@@ -64,7 +64,7 @@
   color: var(--COLOR_DARK);
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 700px) {
   .chat__topbar {

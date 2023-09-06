@@ -2,16 +2,12 @@
   z-index: 1;
 }
 
-.exroom__wrapper {
+.exroom__contents {
   z-index: 5;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-}
-
-.exroom__contents {
-  z-index: 10;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
@@ -23,7 +19,6 @@
   padding: 1rem 2rem;
   gap: 1rem;
   background-color: rgba(255, 255, 255, 0.13);
-  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .exroom__heading {
@@ -64,6 +59,7 @@
   cursor: pointer;
   border-radius: 0.25rem;
   letter-spacing: 2px;
+  margin-bottom: 1rem;
 }
 
 .join__room__btn:focus,
@@ -72,7 +68,7 @@
   color: var(--COLOR_LIGHT);
 }
 
-/* Media Query Breakpoints */
+/* MEDIA QUERY BREAKPOINTS */
 
 @media (max-width: 845px) {
   .exroom__contents {
@@ -135,7 +131,6 @@
 
   .exroom__heading {
     margin-top: 0rem;
-    margin-bottom: 0.5rem;
     letter-spacing: normal;
     font-size: 1.25rem;
   }
@@ -165,9 +160,16 @@
 
   .exroom__heading {
     margin-top: 0rem;
-    margin-bottom: 0.6rem;
     letter-spacing: normal;
     font-size: 1.2rem;
     text-align: center;
+  }
+
+  .join__room__btn {
+    width: 13rem;
+    font-size: 0.9rem;
+    letter-spacing: normal;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 0.25rem;
   }
 }

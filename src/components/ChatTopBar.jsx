@@ -25,7 +25,7 @@ function ChatTopBar(props) {
   };
 
   const handleOptionsClick = function () {
-    // toggle topbar__float__menu div visibility
+    // TOGGLE TOPBAR__FLOAT__MENU DIV VISIBILITY
     setIsDivVisible((prevVisibility) => !prevVisibility);
   };
 

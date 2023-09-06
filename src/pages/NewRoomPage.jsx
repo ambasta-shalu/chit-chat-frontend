@@ -38,32 +38,28 @@ function NewRoomPage() {
     <div className="newroom__page">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Logo />
+      <div className="newroom__contents">
+        <h1 className="newroom__heading">Create New Room </h1>
 
-      <div className="newroom__wrapper">
-        <div className="shape"></div>
-        <div className="newroom__contents">
-          <h1 className="newroom__heading">Create New Chat Room </h1>
-
-          <form className="newroom__form" onSubmit={formik.handleSubmit}>
-            <input
-              type="text"
-              placeholder="User Name"
-              id="userName"
-              name="userName"
-              required
-              autoFocus
-              maxLength={20}
-              onChange={formik.handleChange}
-              value={formik.values.userName}
-            />
-            {formik.errors.userName && (
-              <p className="input__error">{formik.errors.userName}</p>
-            )}
-            <button className="create__room__btn" type="submit">
-              Create Room
-            </button>
-          </form>
-        </div>
+        <form className="newroom__form" onSubmit={formik.handleSubmit}>
+          <input
+            type="text"
+            placeholder="User Name"
+            id="userName"
+            name="userName"
+            required
+            autoFocus
+            maxLength={20}
+            onChange={formik.handleChange}
+            value={formik.values.userName}
+          />
+          {formik.errors.userName && (
+            <p className="input__error">{formik.errors.userName}</p>
+          )}
+          <button className="create__room__btn" type="submit">
+            Create Room
+          </button>
+        </form>
       </div>
     </div>
   );

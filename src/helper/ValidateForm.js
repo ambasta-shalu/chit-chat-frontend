@@ -1,4 +1,4 @@
-// Validate New Room Page
+// VALIDATE NEW ROOM PAGE
 
 export async function validateNewRoom(values) {
   const errors = {};
@@ -16,7 +16,7 @@ export async function validateNewRoom(values) {
 
 // ****************************************************************************************************************
 
-// Validate Exist Room Page
+// VALIDATE EXISTING ROOM PAGE
 
 export async function validateExistRoom(values) {
   const errors = {};

@@ -26,7 +26,7 @@ function PictureItem(props) {
 
         <div className="picture">
           <img
-            src={`data:image/jpeg;base64,${data.CONTENTBASE64}`} // Use the base64 data to display the image
+            src={`data:image/jpeg;base64,${data.CONTENTBASE64}`} // USE THE BASE64 DATA TO DISPLAY THE IMAGE
             alt={data.CONTENT_NAME}
           />
         </div>
